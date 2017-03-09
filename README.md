@@ -10,9 +10,9 @@ Based on News Lister from www.netartmedia.net/
 - login
 
 **To Do List**
-- clean CSSs one day
+- clean the CSSs...
 - remove all unused files
-- remove all parts of code related to pretty URLs (SEO blabla)
+- remove all parts of code related to pretty URLs (SEO blabla), google maps, and so on..
 - have localization done like other modules in OGP
 - ...
 
