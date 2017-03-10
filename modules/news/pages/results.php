@@ -5,9 +5,9 @@
 // Find out more about our products and services on:
 // http://www.netartmedia.net
 // Released under the MIT license
-?><?php
+
 if(!defined('IN_SCRIPT')) die("");
-?>
+if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 
 <h2>
 	<?php
@@ -92,7 +92,7 @@ if(!defined('IN_SCRIPT')) die("");
 			}
 			else
 			{
-				$strLink = "home.php?m=news&p=news&page=details&id=".$listing_counter;
+				$strLink = $homex.".php?m=news&p=news&page=details&id=".$listing_counter;
 			}
 			?>
 			
@@ -174,9 +174,9 @@ if(!defined('IN_SCRIPT')) die("");
 		
 		if($num > 2)
 		{
-			echo "<li><a class=\"pagination-link\" href=\"index.php?".$strSearchString."num=1\"> << </a></li>";
+			echo "<li><a class=\"pagination-link\" href=\"".$homex.".php?".$strSearchString."num=1\"> << </a></li>";
 			
-			echo "<li><a class=\"pagination-link\" href=\"index.php?".$strSearchString."num=".($num-1)."\"> < </a></li>";
+			echo "<li><a class=\"pagination-link\" href=\"".$homex.".php?".$strSearchString."num=".($num-1)."\"> < </a></li>";
 		}
 		
 		$iStartNumber = $num-2;
@@ -200,7 +200,7 @@ if(!defined('IN_SCRIPT')) die("");
 			}
 			else
 			{
-				echo "<li><a class=\"pagination-link\" href=\"index.php?".$strSearchString."num=".$i."\">".$i."</a></li>";
+				echo "<li><a class=\"pagination-link\" href=\"".$homex.".php?".$strSearchString."num=".$i."\">".$i."</a></li>";
 			}
 							
 			
@@ -209,9 +209,9 @@ if(!defined('IN_SCRIPT')) die("");
 		
 		if(($num+1)<ceil($iTotResults/$PageSize))
 		{
-			echo "<li><a href=\"index.php?".$strSearchString."num=".($num+1)."\"> ></b></a></li>";
+			echo "<li><a href=\"".$homex.".php?".$strSearchString."num=".($num+1)."\"> ></b></a></li>";
 			
-			echo "<li><a href=\"index.php?".$strSearchString."num=".(ceil($iTotResults/$PageSize))."\"> >> </a></li>";
+			echo "<li><a href=\"".$homex.".php?".$strSearchString."num=".(ceil($iTotResults/$PageSize))."\"> >> </a></li>";
 		}
 		
 		echo '</ul>';
