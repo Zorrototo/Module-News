@@ -6,12 +6,11 @@
 // Released under the MIT license
 ?>; <?php exit;?>
 
-
 [website]
 seo_urls = "0"
 date_format = "d/m/y"
-results_per_page = "10"
-admin_email = "info@domain.com"
+results_per_page = "5"
+admin_email = "omano@redorchestra2.fr"
 use_captcha_images = "1"
 time_zone = "Europe/Paris"
 image_quality = 90

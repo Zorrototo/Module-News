@@ -100,14 +100,14 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						
-						<a href="<?php echo $strLink;?>" class="search-result-title"><?php echo $listing->title;?></a>
+						<a href="<?php echo $strLink;?>" class="search-result-title"><?php echo strip_tags(html_entity_decode($listing->title));?></a>
 						
 					</h3>
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-sm-4 col-xs-12">
-							<a href="<?php echo $strLink;?>" class="btn-block result-details-link"><img alt="<?php echo $listing->title;?>" class="img-responsive img-res" src="<?php if($images[0]==""||!file_exists("modules/news/thumbnails/".$images[0].".jpg")) echo "modules/news/images/no_pic.gif";else echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
+							<a href="<?php echo $strLink;?>" class="btn-block result-details-link"><img alt="<?php echo strip_tags(html_entity_decode($listing->title));?>" class="img-responsive img-res" src="<?php if($images[0]==""||!file_exists("modules/news/thumbnails/".$images[0].".jpg")) echo "modules/news/images/no_pic.gif";else echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
 						</div>
 						<div class="col-sm-8 col-xs-12">
 							<div class="details">
@@ -227,8 +227,3 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 		<?php
 	}
 	?>
-
-<?php
-$this->Title($this->texts["our_ads"]);
-$this->MetaDescription("");
-?>

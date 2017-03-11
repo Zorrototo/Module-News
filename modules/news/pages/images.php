@@ -183,12 +183,18 @@ $this->ms_i($id);
 						</div>
 						<div class="clearfix"></div>	
 
-					
+						
+						<?php if (extension_loaded('gd')) { ?>
 						<h3><?php echo $this->texts["upload_more_images"];?></h3>
 						<hr/>
 						<input  type="file" class="pull-left" name="images[]" id="images"  multiple="multiple"/>
-
+						
 						<input type="submit" class="btn btn-primary pull-left" value=" <?php echo $this->texts["submit"];?> "/>
+						<?php
+						}else{
+							echo "GD extension is NOT loaded on your server. Images upload disabled.<br/></div>";
+							}
+						?>
 						
 						</form>
 			

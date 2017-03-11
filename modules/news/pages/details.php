@@ -3,31 +3,22 @@
 // Copyright (c) All Rights Reserved, NetArt Media 2003-2016
 // Check http://www.netartmedia.net/newslister for demos and information
 // Released under the MIT license
-?><?php
+
 if(!defined('IN_SCRIPT')) die("");
 
 if(isset($_REQUEST["id"]))
 {
 	$id=intval($_REQUEST["id"]);
 	$this->ms_i($id);
-}
-else
-{
-	die("The listing ID isn't set.");
-}
 
 $listings = simplexml_load_file($this->data_file);
 
 ?>
 
-		<h2><?php echo $listings->listing[$id]->title;?></h2>
+		<h2><?php echo strip_tags(html_entity_decode($listings->listing[$id]->title));?></h2>
 		<div class="pull-right">
 		<?php echo date($this->settings["website"]["date_format"],intval($listings->listing[$id]->time));?>
 		</div>
-		<?php
-		$this->Title($listings->listing[$id]->title);
-		$this->MetaDescription($listings->listing[$id]->description);
-		?>
 		<hr/>
 		<div class="row">
 			<?php
@@ -46,9 +37,13 @@ $listings = simplexml_load_file($this->data_file);
 			}
 			
 			?>
-				
-				<?php echo html_entity_decode($listings->listing[$id]->description);?>
-				
+
+				<?php 
+					require_once('modules/news/include/library/HTMLPurifier.auto.php');
+					$purificateur = new HTMLPurifier();
+					echo $purificateur->purify($listings->listing[$id]->description);
+					?>
+
 			</div>
 			<?php
 			if($listings->listing[$id]->images!="")
@@ -62,7 +57,7 @@ $listings = simplexml_load_file($this->data_file);
 						if(file_exists("modules/news/uploaded_images/".$images[0].".jpg"))
 						{							
 							echo "<a href=\"modules/news/uploaded_images/".$images[0].".jpg\" rel=\"prettyPhoto[ad_gal]\">";
-							echo "<img src=\"modules/news/uploaded_images/".$images[0].".jpg\" alt=\"".$listings->listing[$id]->title."\" class=\"final-image\"/>";
+							echo "<img src=\"modules/news/uploaded_images/".$images[0].".jpg\" alt=\"".strip_tags(html_entity_decode($listings->listing[$id]->title))."\" class=\"final-image\"/>";
 							echo "</a>";
 						}
 						?>
@@ -108,53 +103,10 @@ $listings = simplexml_load_file($this->data_file);
 		
 		<div class="clearfix"></div>
 		
-		<!--Google Maps-->
-		<?php
-		if($listings->listing[$id]->latitude!=""&&$listings->listing[$id]->latitude!="0"&&$listings->listing[$id]->latitude!="0.00"&&$listings->listing[$id]->longitude!=""&&$listings->listing[$id]->longitude!="0"&&$listings->listing[$id]->longitude!="0.00")
-		{
-		?>
-							
-			<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
-			<script type="text/javascript">
-			  function initMap() 
-			  {
-				var Latlng = new google.maps.LatLng(<?php echo $listings->listing[$id]->latitude;?>,<?php echo $listings->listing[$id]->longitude;?>);
-
-				var mapDiv = document.getElementById('map');
-				var map = new google.maps.Map(mapDiv, {
-				  center: {lat: <?php echo $listings->listing[$id]->latitude;?>, lng: <?php echo $listings->listing[$id]->longitude;?>},
-				  zoom: 15
-				});
-				var Marker = new google.maps.Marker({
-					position: Latlng,
-					map:Map,
-					title:""
-				});
-
-				Marker.setMap(map);
-				
-			  }
-			</script>
-
-			<br/>
-			<div id="map" style="width: 100%; height: 300px"></div>
-			<br/>
-				
-		<?php
-		}
-	
-		if($listings->listing[$id]->address!="")
-		{
-			echo stripslashes($listings->listing[$id]->address)."<br/><br/>";
-		}
-		?>
-
-		<!--end Google Maps-->
-
 		<br/>
 		<div class="pull-left">
 			<?php echo $this->texts["written_by"];?>: 
-			<strong><?php echo stripslashes($listings->listing[$id]->written_by);?></strong>
+			<strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
 		
 		</div>
 	
@@ -163,3 +115,10 @@ $listings = simplexml_load_file($this->data_file);
 		</div>
 		
 		</div>
+		
+<?php
+}
+else
+{
+	echo "No ID found";
+}?>

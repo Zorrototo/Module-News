@@ -124,6 +124,7 @@ if(!defined('IN_SCRIPT')) die("");
 							<?php echo $this->texts["images"];?>:
 						</div>
 						<div class="col-md-10">		
+						<?php if (extension_loaded('gd')) { ?>
 							<!--images upload-->
 							<script src="modules/news/js/jquery.uploadfile.js"></script>
 
@@ -181,10 +182,15 @@ if(!defined('IN_SCRIPT')) die("");
 								</script>
 										
 							<!--end images upload-->
+							<?php
+							}else{
+								echo "GD extension is NOT loaded on your server. Images upload disabled.<br/></div>";
+								}
+							?>
 						</div>
 					</div>
-					<br/>
 					
+					<br/>
 					<div class="row">
 						<div class="col-md-2">
 							<?php echo $this->texts["written_by"];?>:

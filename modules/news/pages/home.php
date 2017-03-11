@@ -155,8 +155,8 @@ function ValidateSubmit(form)
 				
 				?>
 				</td>
-				<td><?php echo $listing->title;?></td>
-				<td><?php echo $this->text_words(strip_tags(html_entity_decode($listing->description)),80);?></td>
+				<td><?php echo strip_tags(html_entity_decode($listing->title));?></td>
+				<td><?php echo $this->text_words(strip_tags(html_entity_decode($listing->description)),30);?></td>
 				
 				<td><input type="checkbox" value="<?php echo $i;?>" name="delete_listings[]"/></td>
 				
