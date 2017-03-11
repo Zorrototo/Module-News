@@ -113,7 +113,10 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 							<div class="details">
 								
 								<p class="description">
-									<?php echo $this->text_words(strip_tags(html_entity_decode($listing->description)),80);?>
+									<?php
+									require_once('modules/news/include/library/HTMLPurifier.auto.php');
+									$purificateur = new HTMLPurifier();
+									echo $purificateur->purify($this->text_words($listing->description,80));?>
 								</p>
 								
 							
