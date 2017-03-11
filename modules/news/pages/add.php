@@ -184,7 +184,7 @@ if(!defined('IN_SCRIPT')) die("");
 							<!--end images upload-->
 							<?php
 							}else{
-								echo "GD extension is NOT loaded on your server. Images upload disabled.<br/></div>";
+								echo "GD extension is NOT loaded on your server. Images upload disabled.<br/>";
 								}
 							?>
 						</div>
