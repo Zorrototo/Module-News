@@ -9,8 +9,7 @@
 [website]
 seo_urls = "0"
 date_format = "d/m/y"
-results_per_page = "5"
-admin_email = "omano@redorchestra2.fr"
+results_per_page = "10"
 use_captcha_images = "1"
 time_zone = "Europe/Paris"
 image_quality = 90
