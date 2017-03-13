@@ -40,7 +40,7 @@ if(!defined('IN_SCRIPT')) die("");
 					echo "<h3>Please fill title</h3>";
 					$fields_ok=false;
 				}
-				if (empty(trim(strip_tags($_POST["description"])," "))) { /// not working as intended
+				if (empty(trim(strip_tags($_POST["description"]),"/&nbsp;/ "))) {
 					echo "<h3>Please fill description</h3>";
 					$fields_ok=false;
 				}
