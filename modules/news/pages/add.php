@@ -34,42 +34,49 @@ if(!defined('IN_SCRIPT')) die("");
 
 			if(isset($_REQUEST["proceed_save"]))
 			{
-				///images processing
-				$str_images_list = "";
-				$limit_pictures=25;
-				$path="modules/news/";
-				$ini_array = parse_ini_file("modules/news/config.php",true);
-				$image_quality=$ini_array["website"]["image_quality"];
-				$max_image_width=$ini_array["website"]["max_image_width"];
-				
-				include("modules/news/include/images_processing.php");
-				///end images processing
-				$listings = simplexml_load_file($this->data_file,'SimpleXMLExtended', LIBXML_NOCDATA);
-				$listing = $listings->addChild('listing');
-				$listing->addChild('time', time());
-				$listing->addChild('title', stripslashes($_POST["title"]));
-				$article_content=stripslashes($_POST["description"]);
-				$article_content=str_replace("&nbsp;"," ",$article_content);
-				
-				$listing->addChildWithCDATA('description', $article_content);
-				$listing->addChild('images', $str_images_list);
-				$listing->addChild('written_by', stripslashes($_POST["written_by"]));
-				$listing->addChild('latitude', stripslashes($_POST["latitude"]));
-				$listing->addChild('longitude', stripslashes($_POST["longitude"]));
-				$listing->addChild('address', stripslashes($_POST["address"]));
-				$listings->asXML($this->data_file); 
-				?>
-				<h3><?php echo $this->texts["new_added_success"];?></h3>
-				<br/>
-				<a href="home.php?m=news&p=admin_news&page=add" class="underline-link"><?php echo $this->texts["add_another"];?></a>
-				<?php echo $this->texts["or_message"];?>
-				<a href="home.php?m=news&p=admin_news&page=home" class="underline-link"><?php echo $this->texts["manage_listings"];?></a>
-				<br/>
-				<br/>
-				<br/>
-				<?php
-				$show_add_form=false;
-			}	
+				///server side check if fields are not empty in case user modified the page with 'inspect element'
+				if (empty($_POST["title"])) {
+				echo "<h3>Please fill title</h3>"; }
+				if (empty($_POST["description"]) || $_POST["description"] =="<br>") {
+				echo "<h3>Please fill description</h3>"; }
+				if (empty($_POST["written_by"])) {
+				echo "<h3>Please fill author</h3>";}
+				if (!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["written_by"])) {
+				///value 0 will be detected as empty
+					///images processing
+					$str_images_list = "";
+					$limit_pictures=25;
+					$path="modules/news/";
+					$ini_array = parse_ini_file("modules/news/config.php",true);
+					$image_quality=$ini_array["website"]["image_quality"];
+					$max_image_width=$ini_array["website"]["max_image_width"];
+					
+					include("modules/news/include/images_processing.php");
+					///end images processing
+					$listings = simplexml_load_file($this->data_file,'SimpleXMLExtended', LIBXML_NOCDATA);
+					$listing = $listings->addChild('listing');
+					$listing->addChild('time', time());
+					$listing->addChild('title', stripslashes($_POST["title"]));
+					$article_content=stripslashes($_POST["description"]);
+					$article_content=str_replace("&nbsp;"," ",$article_content);
+					
+					$listing->addChildWithCDATA('description', $article_content);
+					$listing->addChild('images', $str_images_list);
+					$listing->addChild('written_by', stripslashes($_POST["written_by"]));
+					$listings->asXML($this->data_file); 
+					?>
+					<h3><?php echo $this->texts["new_added_success"];?></h3>
+					<br/>
+					<a href="home.php?m=news&p=admin_news&page=add" class="underline-link"><?php echo $this->texts["add_another"];?></a>
+					<?php echo $this->texts["or_message"];?>
+					<a href="home.php?m=news&p=admin_news&page=home" class="underline-link"><?php echo $this->texts["manage_listings"];?></a>
+					<br/>
+					<br/>
+					<br/>
+					<?php
+					$show_add_form=false;
+				}
+			}
 			
 			
 
@@ -100,7 +107,7 @@ if(!defined('IN_SCRIPT')) die("");
 							<?php echo $this->texts["title"];?>:
 						</div>
 						<div class="col-md-10">
-									<input class="form-control" type="text" name="title" required value=""/>
+									<input class="form-control" type="text" name="title" required value="<?php echo $_REQUEST["title"];?>"/>
 						</div>
 					</div>
 					<br/>
@@ -111,8 +118,8 @@ if(!defined('IN_SCRIPT')) die("");
 						<div class="col-md-10">
 							
 							
-
-							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"></textarea>
+							<!--  description auto re-fill still not work as intended surely because of the JS replacing the textarea without grabbing the original value of textarea, to be looked at later.. textarea though as its correct value-->
+							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%" value="<?php echo $_REQUEST["description"];?>"></textarea>
 							
 						</div>
 					</div>		
@@ -196,7 +203,7 @@ if(!defined('IN_SCRIPT')) die("");
 							<?php echo $this->texts["written_by"];?>:
 						</div>
 						<div class="col-md-10">
-							<input class="form-control" type="text" name="written_by" required value=""/>
+							<input class="form-control" type="text" name="written_by" required value="<?php echo $_REQUEST["written_by"];?>"/>
 						</div>
 					</div>				
 									
