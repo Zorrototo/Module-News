@@ -14,6 +14,8 @@ Based on News Lister from www.netartmedia.net/
 - remove all unused files
 - remove all parts of code related to pretty URLs (SEO blabla), google maps, and so on..
 - have localization done like other modules in OGP
+- have image deletion actually work and remove images from server when deleting article or modifying images
+- disallow having empty fields server side when adding/editing article
 - ...
 
 **Install Requirement and Other**
