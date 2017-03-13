@@ -42,7 +42,7 @@ if(!defined('IN_SCRIPT')) die("");
 				if (empty($_POST["written_by"])) {
 				echo "<h3>Please fill author</h3>";}
 				if (!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["written_by"])) {
-				///value 0 will be detected as empty
+				///value 0 will be detected as empty for author and title, empty description (<br>) will be considered empty, but multiple <br> will not, even if it is visually empty
 					///images processing
 					$str_images_list = "";
 					$limit_pictures=25;
@@ -118,8 +118,7 @@ if(!defined('IN_SCRIPT')) die("");
 						<div class="col-md-10">
 							
 							
-							<!--  description auto re-fill still not work as intended surely because of the JS replacing the textarea without grabbing the original value of textarea, to be looked at later.. textarea though as its correct value-->
-							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%" value="<?php echo $_REQUEST["description"];?>"></textarea>
+							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_REQUEST["description"];?></textarea>
 							
 						</div>
 					</div>		
