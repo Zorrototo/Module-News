@@ -69,6 +69,16 @@ $this->ms_i($id);
 					
 					$xml->listing[$id]->images=$current_images;
 					$xml->asXML($this->data_file); 
+					
+					if(file_exists("modules/news/thumbnails/".$_REQUEST["del"].".jpg"))
+						{
+							unlink("modules/news/thumbnails/".$_REQUEST["del"].".jpg");
+						}
+						
+					if(file_exists("modules/news/uploaded_images/".$_REQUEST["del"].".jpg"))
+						{
+							unlink("modules/news/uploaded_images/".$_REQUEST["del"].".jpg");
+						}
 				
 				}
 			}
@@ -92,31 +102,6 @@ $this->ms_i($id);
 				}
 				
 				
-				if(trim($_POST["dele_images"]) != "")
-				{
-					$dele_ids = explode(",",trim($_POST["dele_images"]));
-					
-					foreach($dele_ids as $dele_id)
-					{
-						if(trim($dele_id)=="") continue;
-						$this->ms_i($dele_id);
-						
-						if(file_exists("modules/news/thumbnails/".$dele_id.".jpg"))
-						{
-							unlink("modules/news/thumbnails/".$dele_id.".jpg");
-						}
-						
-						if(file_exists("modules/news/uploaded_images/".$dele_id.".jpg"))
-						{
-							unlink("modules/news/uploaded_images/".$dele_id.".jpg");
-						}
-						
-						$str_images_list=str_replace($dele_id.",","",$str_images_list);
-						$str_images_list=str_replace($dele_id,"",$str_images_list);
-					}
-				}
-				
-				
 				$xml->listing[$id]->images=$str_images_list;
 				$xml->asXML($this->data_file); 
 				$current_images=$str_images_list;
@@ -136,7 +121,6 @@ $this->ms_i($id);
 					<form action="home.php?m=news&p=admin_news" method="post"   enctype="multipart/form-data">
 					<input type="hidden" name="page" value="images"/>
 					<input type="hidden" name="proceed_save" value="1"/>
-					<input type="hidden" name="dele_images" id="dele_images" >
 					<input type="hidden" name="id" value="<?php echo $id;?>"/>
 					
 						<script>
