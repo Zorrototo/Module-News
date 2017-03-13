@@ -34,15 +34,21 @@ if(!defined('IN_SCRIPT')) die("");
 
 			if(isset($_REQUEST["proceed_save"]))
 			{
-				///server side check if fields are not empty in case user modified the page with 'inspect element'
-				if (empty($_POST["title"])) {
-				echo "<h3>Please fill title</h3>"; }
-				if (empty($_POST["description"]) || $_POST["description"] =="<br>") {
-				echo "<h3>Please fill description</h3>"; }
-				if (empty($_POST["written_by"])) {
-				echo "<h3>Please fill author</h3>";}
-				if (!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["written_by"])) {
-				///value 0 will be detected as empty for author and title, empty description (<br>) will be considered empty, but multiple <br> will not, even if it is visually empty
+				///server side check if fields are not empty in case user modified the page with 'inspect element' to remove required option
+				$fields_ok=true;
+				if (empty(trim($_POST["title"]," "))) {
+					echo "<h3>Please fill title</h3>";
+					$fields_ok=false;
+				}
+				if (empty(trim(strip_tags($_POST["description"])," "))) { /// not working as intended
+					echo "<h3>Please fill description</h3>";
+					$fields_ok=false;
+				}
+				if (empty(trim($_POST["written_by"]," "))) {
+					echo "<h3>Please fill author</h3>";
+					$fields_ok=false;
+				}
+				if ($fields_ok) {
 					///images processing
 					$str_images_list = "";
 					$limit_pictures=25;
@@ -118,7 +124,7 @@ if(!defined('IN_SCRIPT')) die("");
 						<div class="col-md-10">
 							
 							
-							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_REQUEST["description"];?></textarea>
+							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_POST["description"];?></textarea>
 							
 						</div>
 					</div>		
