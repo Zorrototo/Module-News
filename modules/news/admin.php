@@ -1,7 +1,6 @@
 <?php
 function exec_ogp_module()
 {
-define("IN_SCRIPT","1");
 define("IN_SCRIPT_ADMIN","1");
 
 error_reporting(0);

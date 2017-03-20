@@ -55,7 +55,7 @@ define('results_per_page', "News par page");
 define('enable_search', "Activer le moteur de recherche");
 define('image_quality', "Qualité d'image  (0-100)");
 define('max_image_width', "Largeur max. des images (px)");
-define('no_word', "No");
-define('yes_word', "Yes");
-define('no_access', "You do not have the right to access this page. Your action will be logged for further inspection.");
+define('no_word', "Non");
+define('yes_word', "Oui");
+define('no_access', "Vous n'avez pas le droit d'accéder à cette page. Votre action va être logguée pour une inspection plus approfondie.");
 ?>
