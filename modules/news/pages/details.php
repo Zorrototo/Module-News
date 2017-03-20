@@ -105,13 +105,13 @@ $listings = simplexml_load_file($this->data_file);
 		
 		<br/>
 		<div class="pull-left">
-			<?php echo $this->texts["written_by"];?>: 
+			<?php echo get_lang('written_by');?>: 
 			<strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
 		
 		</div>
 	
 		<div class="pull-right">
-			<a id="go_back_button" class="btn btn-default pull-right" href="<?php if (!empty($_SESSION['user_id'])) {echo "home";} else {echo "index";}?>.php?m=news&p=news"><?php echo $this->texts["go_back"];?></a>
+			<a id="go_back_button" class="btn btn-default pull-right" href="<?php if (!empty($_SESSION['user_id'])) {echo "home";} else {echo "index";}?>.php?m=news&p=news"><?php echo get_lang('go_back');?></a>
 		</div>
 		
 		</div>

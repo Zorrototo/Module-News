@@ -6,7 +6,7 @@
 // Released under the MIT license
 ?><?php
 
-if(!defined('IN_SCRIPT')) die("");
+if(!defined('IN_SCRIPT_ADMIN')) die("");
 
 if(isset($_POST["list_images"])&&$_POST["list_images"]!="")
 {

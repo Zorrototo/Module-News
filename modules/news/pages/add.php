@@ -5,12 +5,14 @@
 // http://www.netartmedia.net
 // Released under the MIT license
 ?><?php
-if(!defined('IN_SCRIPT')) die("");
-
-
+if(!defined('IN_SCRIPT_ADMIN')) {
+	echo '<h3>'.get_lang('no_access').'</h3>';
+	//log shit here
+}
+else{
 ?>
-	<h2><?php echo $this->texts["add_new_listing"];?></h2>
-	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo $this->texts["go_back"];?></a>
+	<h2><?php echo get_lang('add_new_listing');?></h2>
+	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
 	<br/>
 	<div class="container">
 		<br/><br/>
@@ -71,11 +73,11 @@ if(!defined('IN_SCRIPT')) die("");
 					$listing->addChild('written_by', stripslashes($_POST["written_by"]));
 					$listings->asXML($this->data_file); 
 					?>
-					<h3><?php echo $this->texts["new_added_success"];?></h3>
+					<h3><?php echo get_lang('new_added_success');?></h3>
 					<br/>
-					<a href="home.php?m=news&p=admin_news&page=add" class="underline-link"><?php echo $this->texts["add_another"];?></a>
-					<?php echo $this->texts["or_message"];?>
-					<a href="home.php?m=news&p=admin_news&page=home" class="underline-link"><?php echo $this->texts["manage_listings"];?></a>
+					<a href="home.php?m=news&p=admin_news&page=add" class="underline-link"><?php echo get_lang('add_another');?></a>
+					<?php echo get_lang('or_message');?>
+					<a href="home.php?m=news&p=admin_news&page=home" class="underline-link"><?php echo get_lang('manage_listings');?></a>
 					<br/>
 					<br/>
 					<br/>
@@ -110,7 +112,7 @@ if(!defined('IN_SCRIPT')) die("");
 				
 					<div class="row">
 						<div class="col-md-2">
-							<?php echo $this->texts["title"];?>:
+							<?php echo get_lang('title');?>:
 						</div>
 						<div class="col-md-10">
 									<input class="form-control" type="text" name="title" required value="<?php echo $_REQUEST["title"];?>"/>
@@ -119,7 +121,7 @@ if(!defined('IN_SCRIPT')) die("");
 					<br/>
 					<div class="row">
 						<div class="col-md-2">
-							<?php echo $this->texts["description"];?>:
+							<?php echo get_lang('description');?>:
 						</div>
 						<div class="col-md-10">
 							
@@ -133,7 +135,7 @@ if(!defined('IN_SCRIPT')) die("");
 					
 					<div class="row">
 						<div class="col-md-2">			
-							<?php echo $this->texts["images"];?>:
+							<?php echo get_lang('images');?>:
 						</div>
 						<div class="col-md-10">		
 						<?php if (extension_loaded('gd')) { ?>
@@ -141,7 +143,7 @@ if(!defined('IN_SCRIPT')) die("");
 							<script src="modules/news/js/jquery.uploadfile.js"></script>
 
 							
-								<div id="mulitplefileuploader"><?php echo $this->texts["please_select"];?></div>
+								<div id="mulitplefileuploader"><?php echo get_lang('please_select');?></div>
 								
 								
 								<div id="status"><i>
@@ -205,7 +207,7 @@ if(!defined('IN_SCRIPT')) die("");
 					<br/>
 					<div class="row">
 						<div class="col-md-2">
-							<?php echo $this->texts["written_by"];?>:
+							<?php echo get_lang('written_by');?>:
 						</div>
 						<div class="col-md-10">
 							<input class="form-control" type="text" name="written_by" required value="<?php echo $_REQUEST["written_by"];?>"/>
@@ -220,7 +222,7 @@ if(!defined('IN_SCRIPT')) die("");
 						
 				<div class="clearfix"></div>
 				<br/>
-				<button type="submit" class="btn btn-primary pull-right"> <?php echo $this->texts["submit"];?> </button>
+				<button type="submit" class="btn btn-primary pull-right"> <?php echo get_lang('submit');?> </button>
 				<div class="clearfix"></div>
 			</form>
 				
@@ -233,3 +235,6 @@ if(!defined('IN_SCRIPT')) die("");
 	<style>
 	textarea{background:white !important}
 	</style>
+<?php
+}
+?>

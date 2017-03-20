@@ -10,14 +10,14 @@ if(!defined('IN_SCRIPT')) die("");
 if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 
 <h2>
-	<?php
+	<?php 
 	if(isset($_REQUEST["keyword_search"]))
 	{
-		echo $this->texts["search_results"];
+		echo get_lang('search_results');
 	}
 	else
 	{
-		echo $this->texts["our_ads"];
+		echo get_lang('latest_news');
 	}
 	?>
 </h2>
@@ -131,7 +131,7 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 						</div>
 						<div class="col-xs-6">
 							<div class="text-right">
-								<a href="<?php echo $strLink;?>" class="btn btn-primary"><?php echo $this->texts["details"];?></a>
+								<a href="<?php echo $strLink;?>" class="btn btn-primary"><?php echo get_lang('details');?></a>
 							</div>
 						</div>
 					</div>
@@ -226,7 +226,7 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 	if($iTotResults==0)
 	{
 		?>
-		<i><?php echo $this->texts["no_results"];?></i>
+		<i><?php echo get_lang('no_results');?></i>
 		<?php
 	}
 	?>

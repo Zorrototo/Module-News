@@ -6,7 +6,11 @@
 // http://www.netartmedia.net
 // Released under the MIT license
 ?><?php
-if(!defined('IN_SCRIPT')) die("");
+if(!defined('IN_SCRIPT_ADMIN')) {
+	echo '<h3>'.get_lang('no_access').'</h3>';
+	//log shit here
+}
+else{
 
 $id=intval($_REQUEST["id"]);
 
@@ -14,8 +18,8 @@ $this->ms_i($id);
 
 ?>
 		  
-			<h2><?php echo $this->texts["edit_listing"];?></h2>
-			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo $this->texts["go_back"];?></a>
+			<h2><?php echo get_lang('edit_listing');?></h2>
+			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
 			<br/><br/>
 	<script>
 $(function(){
@@ -63,7 +67,7 @@ $(function(){
 				
 				
 				$xml->asXML($this->data_file); 
-				echo "<h3>".$this->texts["modifications_saved"]."</h3><br/>";
+				echo "<h3>".get_lang('modifications_saved')."</h3><br/>";
 			}	
 			
 			
@@ -92,7 +96,7 @@ $(function(){
 					
 						<div class="row">
 							<div class="col-md-2">
-									<?php echo $this->texts["title"];?>:
+									<?php echo get_lang('title');?>:
 							</div>
 						
 							<div class="col-md-10">
@@ -102,7 +106,7 @@ $(function(){
 						<br/>
 						<div class="row">
 							<div class="col-md-2">
-								<?php echo $this->texts["description"];?>:
+								<?php echo get_lang('description');?>:
 									
 									
 							</div>
@@ -114,7 +118,7 @@ $(function(){
 						<br/>
 						<div class="row">
 							<div class="col-md-2">			
-								<?php echo $this->texts["images"];?>:
+								<?php echo get_lang('images');?>:
 							</div>
 							<div class="col-md-10">	
 								<?php
@@ -145,13 +149,13 @@ $(function(){
 								?>	
 								<div class="clearfix"></div>
 								
-								<a class="underline-link" href="home.php?m=news&p=admin_news&page=images&id=<?php echo $id;?>"><?php echo $this->texts["modify"];?></a>
+								<a class="underline-link" href="home.php?m=news&p=admin_news&page=images&id=<?php echo $id;?>"><?php echo get_lang('modify');?></a>
 							</div>
 						</div>
 						<br/>
 						<div class="row">
 							<div class="col-md-2">
-								<?php echo $this->texts["written_by"];?>:
+								<?php echo get_lang('written_by');?>:
 							</div>
 							<div class="col-md-10">
 									
@@ -162,9 +166,13 @@ $(function(){
 						
 						<div class="clearfix"></div>
 						<br/>
-						<button type="submit" class="btn btn-primary pull-right"> <?php echo $this->texts["save"];?> </button>
+						<button type="submit" class="btn btn-primary pull-right"> <?php echo get_lang('save');?> </button>
 						<div class="clearfix"></div>
 					</form>
 				
 				
 	</div>
+	
+<?php
+}
+?>

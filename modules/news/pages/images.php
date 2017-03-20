@@ -5,15 +5,19 @@
 // http://www.netartmedia.net
 // Released under the MIT license
 ?><?php
-if(!defined('IN_SCRIPT')) die("");
+if(!defined('IN_SCRIPT_ADMIN')) {
+	echo '<h3>'.get_lang('no_access').'</h3>';
+	//log shit here
+}
+else{
 
 $id=intval($_REQUEST["id"]);
 
 $this->ms_i($id);
 
 ?>
-			<h2><?php echo $this->texts["modify_images"];?></h2>		  
-			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo $this->texts["go_back"];?></a>
+			<h2><?php echo get_lang('modify_images');?></h2>		  
+			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
 			<br/><br/>
 
 	<div class="container" id="main_content">
@@ -146,7 +150,7 @@ $this->ms_i($id);
 								
 										
 								<div  ondragstart="javascript:img_drag_start(this)" style="float:left;width:220px;margin-right:20px;margin-bottom:20px;background:#ffffff;padding:10px" class="img-shadow drag_img" id="img<?php echo $image_ids[$i];?>">
-								<a class="pull-right" href="javascript:Dele('<?php echo $image_ids[$i];?>')"><img src="modules/news/images/cancel.gif" alt="<?php echo $this->texts["delete"];?>" width="21" height="20" border="0"></a>
+								<a class="pull-right" href="javascript:Dele('<?php echo $image_ids[$i];?>')"><img src="modules/news/images/cancel.gif" alt="<?php echo get_lang('delete');?>" width="21" height="20" border="0"></a>
 								<br>
 								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" width="200"/>
 								
@@ -169,11 +173,11 @@ $this->ms_i($id);
 
 						
 						<?php if (extension_loaded('gd')) { ?>
-						<h3><?php echo $this->texts["upload_more_images"];?></h3>
+						<h3><?php echo get_lang('upload_more_images');?></h3>
 						<hr/>
 						<input  type="file" class="pull-left" name="images[]" id="images"  multiple="multiple"/>
 						
-						<input type="submit" class="btn btn-primary pull-left" value=" <?php echo $this->texts["submit"];?> "/>
+						<button type="submit" class="btn btn-primary pull-left"><?php echo get_lang('submit');?></button>
 						<?php
 						}else{
 							echo "GD extension is NOT loaded on your server. Images upload disabled.<br/></div>";
@@ -229,3 +233,7 @@ $this->ms_i($id);
 			</div>
 
 	</div>
+	
+<?php
+}
+?>
