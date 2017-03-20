@@ -25,7 +25,6 @@ else{
 			{
 				$ini_array["website"]["date_format"]=stripslashes($_POST["date_format"]);
 				$ini_array["website"]["results_per_page"]=stripslashes($_POST["results_per_page"]);
-				//$ini_array["website"]["time_zone"]=stripslashes($_POST["time_zone"]);
 				$ini_array["website"]["enable_search"]=stripslashes($_POST["enable_search"]);
 				$ini_array["website"]["image_quality"]=stripslashes($_POST["image_quality"]);
 				$ini_array["website"]["max_image_width"]=stripslashes($_POST["max_image_width"]);
@@ -59,12 +58,6 @@ else{
 									
 									<input type="text" name="results_per_page" value="<?php echo $ini_array["website"]["results_per_page"];?>"/>
 								</li>
-								
-								<!--  <li>
-									<label><?php// echo get_lang('time_zone');?>:</label>
-									
-									<input type="text" name="time_zone" value="<?php echo $ini_array["website"]["time_zone"];?>"/>
-								</li>  -->
 									
 								<li>
 									<label><?php echo get_lang('enable_search');?>:</label>
