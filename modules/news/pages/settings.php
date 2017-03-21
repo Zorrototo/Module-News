@@ -3,17 +3,19 @@
 // Copyright (c) All Rights Reserved, NetArt Media 2003-2016
 // Check http://www.netartmedia.net/newslister for demos and information
 // Released under the MIT license
-?><?php
+
 if(!defined('IN_SCRIPT_ADMIN')) {
 	echo '<h3>'.get_lang('no_access').'</h3>';
 	//log shit here
 }
-else{
-?>
-
+else {
+	?>
+	
 	<h2><?php echo get_lang('config_options');?></h2>
+	
 	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
 	<br/>
+	
 	<div class="container">
 
 			<br/>
@@ -93,6 +95,7 @@ else{
 			</div>
 
 	</div>
+
 <?php
 }
 ?>

@@ -2,7 +2,7 @@
 /*
  *
  * OGP - Open Game Panel
- * Copyright (C) 2008 - 2016 The OGP Development Team
+ * Copyright (C) 2008 - 2017 The OGP Development Team
  *
  * http://www.opengamepanel.org/
  *
@@ -58,4 +58,13 @@ define('max_image_width', "Largeur max. des images (px)");
 define('no_word', "Non");
 define('yes_word', "Oui");
 define('no_access', "Vous n'avez pas le droit d'accéder à cette page. Votre action va être logguée pour une inspection plus approfondie.");
+define('write_permission_required', "Permission en écriture requise");
+define('fix_permission', "Veuillez corriger les permissions. Le module ne fonctionnera pas correctement tant que vous ne corrigez pas toutes les permissions.");
+define('check_permissions', "Check Permissions");
+define('OK_permission', "Les permissions requises sont toutes OK!");
+define('empty_title', "Veuillez renseigner un titre");
+define('empty_description', "Veuillez renseigner le contenu");
+define('empty_author', "Veuillez renseigner le nom de l'auteur");
+define('GD_fail', "L'extension GD n'est PAS chargée sur votre serveur. L'envoi d'images est désactivé.");
+
 ?>

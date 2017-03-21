@@ -5,7 +5,7 @@
 // Find out more about our products and services on:
 // http://www.netartmedia.net
 // Released under the MIT license
-?><?php
+
 if(!defined('IN_SCRIPT_ADMIN')) {
 	echo '<h3>'.get_lang('no_access').'</h3>';
 	//log shit here
@@ -87,6 +87,22 @@ function ValidateSubmit(form)
 
 	<br/>
 	
+	<div class="col-md-3 pull-right no-right-padding">
+		<div class="db-wrap"  onclick="javascript:LoadPage('permissions')" onmouseover="javascript:OverDB(this, 3)" onmouseout="javascript:OutDB(this)">
+			
+			<a href="home.php?m=news&p=admin_news&page=permissions">
+				<img src="modules/news/images/permissions.png" class="pull-left arrow-img"/>
+				<span class="pull-left"><?php echo get_lang('check_permissions');?></span>
+			 
+			</a>
+			
+			<div class="clearfix"></div>
+		
+						
+			<div class="back-color-3" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
+		</div>
+	</div>
+		
 	<div class="col-md-3 pull-right no-right-padding">
 		<div class="db-wrap"  onclick="javascript:LoadPage('settings')" onmouseover="javascript:OverDB(this, 5)" onmouseout="javascript:OutDB(this)">
 			

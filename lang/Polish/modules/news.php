@@ -2,7 +2,7 @@
 /*
  *
  * OGP - Open Game Panel
- * Copyright (C) 2008 - 2016 The OGP Development Team
+ * Copyright (C) 2008 - 2017 The OGP Development Team
  *
  * http://www.opengamepanel.org/
  *
@@ -58,4 +58,13 @@ define('max_image_width', "Maximum image width (px)");
 define('no_word', "No");
 define('yes_word', "Yes");
 define('no_access', "You do not have the right to access this page. Your action will be logged for further inspection.");
+define('write_permission_required', "Write permission required");
+define('fix_permission', "Please fix permissions. The module will not work as intended until you fix all permissions.");
+define('check_permissions', "Check Permissions");
+define('OK_permission', "Required permissions are all OK!");
+define('empty_title', "Please fill the title");
+define('empty_description', "Please fill the content");
+define('empty_author', "Please fill the author name");
+define('GD_fail', "GD extension is NOT loaded on your server. Images upload disabled.");
+
 ?>

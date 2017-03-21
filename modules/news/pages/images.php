@@ -180,7 +180,7 @@ $this->ms_i($id);
 						<button type="submit" class="btn btn-primary pull-left"><?php echo get_lang('submit');?></button>
 						<?php
 						}else{
-							echo "GD extension is NOT loaded on your server. Images upload disabled.<br/></div>";
+							echo "<h3><span class='failure'>".get_lang('GD_fail')."</span></h3>";
 							}
 						?>
 						

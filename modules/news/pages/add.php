@@ -39,15 +39,15 @@ else{
 				///server side check if fields are not empty in case user modified the page with 'inspect element' to remove required option
 				$fields_ok=true;
 				if (empty(trim($_POST["title"]," "))) {
-					echo "<h3>Please fill title</h3>";
+					echo "<h3><span class='failure'>".get_lang('empty_title')."</span></h3>";
 					$fields_ok=false;
 				}
 				if (empty(trim(strip_tags($_POST["description"]),"/&nbsp;/ "))) {
-					echo "<h3>Please fill description</h3>";
+					echo "<h3><span class='failure'>".get_lang('empty_description')."</span></h3>";
 					$fields_ok=false;
 				}
 				if (empty(trim($_POST["written_by"]," "))) {
-					echo "<h3>Please fill author</h3>";
+					echo "<h3><span class='failure'>".get_lang('empty_author')."</span></h3>";
 					$fields_ok=false;
 				}
 				if ($fields_ok) {
@@ -198,7 +198,7 @@ else{
 							<!--end images upload-->
 							<?php
 							}else{
-								echo "GD extension is NOT loaded on your server. Images upload disabled.<br/>";
+								echo "<h3><span class='failure'>".get_lang('GD_fail')."</span></h3>";
 								}
 							?>
 						</div>
