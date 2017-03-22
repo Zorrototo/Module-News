@@ -66,5 +66,5 @@ define('empty_title', "Veuillez renseigner un titre");
 define('empty_description', "Veuillez renseigner le contenu");
 define('empty_author', "Veuillez renseigner le nom de l'auteur");
 define('GD_fail', "L'extension GD n'est PAS chargée sur votre serveur. L'envoi d'images est désactivé.");
-
+define('search_news', "Rechercher les News");
 ?>

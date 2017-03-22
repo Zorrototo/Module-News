@@ -16,10 +16,7 @@ $listings = simplexml_load_file($this->data_file);
 ?>
 
 		<h2><?php echo strip_tags(html_entity_decode($listings->listing[$id]->title));?></h2>
-		<div class="pull-right">
-		<?php echo date($this->settings["website"]["date_format"],intval($listings->listing[$id]->time));?>
-		</div>
-		<hr/>
+
 		<div class="row">
 			<?php
 			if($listings->listing[$id]->images=="")
@@ -31,13 +28,13 @@ $listings = simplexml_load_file($this->data_file);
 			else
 			{
 				?>
-				<div class="col-md-7">
+				<div class="col-md-8">
 				<?php
 				
 			}
 			
 			?>
-
+					<br>
 				<?php 
 					require_once('modules/news/include/library/HTMLPurifier.auto.php');
 					$purificateur = new HTMLPurifier();
@@ -50,8 +47,8 @@ $listings = simplexml_load_file($this->data_file);
 			{
 				/// showing the listing images
 				?>
-				<div class="col-md-5">
-					<?php
+				<div class="col-md-4">
+					<br><?php
 						$images=explode(",",trim($listings->listing[$id]->images,","));
 						
 						if(file_exists("modules/news/uploaded_images/".$images[0].".jpg"))
@@ -73,7 +70,7 @@ $listings = simplexml_load_file($this->data_file);
 							{
 								echo "<a href=\"modules/news/uploaded_images/".$images[$i].".jpg\" rel=\"prettyPhoto[ad_gal]\">";
 							}
-							echo "<img src=\"modules/news/thumbnails/".$images[$i].".jpg\" width=\"78\" alt=\"\"/>";
+							echo "<img src=\"modules/news/thumbnails/".$images[$i].".jpg\" width=\"85\" alt=\"\"/>";
 							if($i!=0)
 							{
 								echo "</a>";
@@ -105,9 +102,7 @@ $listings = simplexml_load_file($this->data_file);
 		
 		<br/>
 		<div class="pull-left">
-			<?php echo get_lang('written_by');?>: 
-			<strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
-		
+			<br><strong><?php echo date($this->settings["website"]["date_format"],intval($listings->listing[$id]->time));?></strong> - <?php echo get_lang('written_by');?>: <strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
 		</div>
 	
 		<div class="pull-right">

@@ -21,14 +21,24 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 	}
 	?>
 </h2>
+<?php
+if($this->settings["website"]["enable_search"]==1) {
+?>
+<form action="<?php echo $homex;?>.php?m=news&p=news" method="post">
+<input type="hidden" name="page" value="results"/>
+<input type="hidden" name="proceed_search" value="1"/>
+<button type="submit" class="pull-right searchmod"><img src="modules/news/images/search.png" alt="<?php echo get_lang('search_news');}?>"></button><input required name="keyword_search" value="<?php if(isset($_REQUEST["keyword_search"])) { echo stripslashes($_REQUEST["keyword_search"]);} else { echo get_lang('search_news');}?>" type="text" class="pull-right searchmod"/>
+</form>
+<?php
+}
+?>
 
-<div class="clearfix"></div>		
-		
+<div class="clearfix"></div>
 
 <hr class="no-margin"/>
-<br/>
-<script src="js/results.js"></script>
 
+<script src="js/results.js"></script>
+<br/>
 	<div class="clearfix"></div>
 	<div class="results-container">		
 	
@@ -61,11 +71,6 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 		$listing_counter--; 
   
 		//refine search
-		if(isset($_REQUEST["only_picture"])&&$_REQUEST["only_picture"]==1)
-		{
-			if(trim($listing->images)=="") continue;
-		}	
-
 		if(isset($_REQUEST["keyword_search"])&&trim($_REQUEST["keyword_search"])!="")
 		{
 			if
@@ -86,14 +91,8 @@ if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 		
 			$images=explode(",",$listing->images);
 			
-			if($this->settings["website"]["seo_urls"]==1)
-			{
-				$strLink = "news-".$this->format_str(strip_tags(stripslashes($listing->title)))."-".$listing_counter.".html";
-			}
-			else
-			{
-				$strLink = $homex.".php?m=news&p=news&page=details&id=".$listing_counter;
-			}
+			$strLink = $homex.".php?m=news&p=news&page=details&id=".$listing_counter;
+			
 			?>
 			
 		<div class="panel panel-default search-result">
