@@ -16,9 +16,6 @@ class SiteManager
 	public $multi_language = false;
 	private $db;
 	public $running_mode=1;
-
-	
-	public $default_page_name="en_Home";
 	
 	
 	function SiteManager()
@@ -32,9 +29,6 @@ class SiteManager
 	public $Description = true;
 	public $Keywords = true;
 	
-	/// The current language version on the website
-	public $Language = true;
-	
 	/// The html code of the website template
 	public $TemplateHTML = "";
 	
@@ -44,11 +38,6 @@ class SiteManager
 	/// Texts and words shown on the website
 	public $texts = array();
 	
-	
-	function SetLanguage($lang)
-	{
-		$this->lang= substr(preg_replace("/[^a-z]/i", "", $lang), 0, 2); 
-	}
 	
 	function SetDataFile($data_file)
 	{
@@ -74,27 +63,8 @@ class SiteManager
 			$this->settings = parse_ini_file("modules/news/config.php",true);
 		}
 		else
-		if(file_exists("../config.php"))
-		{
-			$this->settings = parse_ini_file("../config.php",true);
-		}
-		else
 		{
 			die("The configuration file doesn't exist!");
-		}
-		
-		if(file_exists("modules/news/include/texts_".$this->lang.".php"))
-		{
-			$this->texts = parse_ini_file("modules/news/include/texts_".$this->lang.".php",true);
-		}
-		else
-		if(file_exists("../include/texts_".$this->lang.".php"))
-		{
-			$this->texts = parse_ini_file("../include/texts_".$this->lang.".php",true);
-		}
-		else
-		{
-			die("The language file include/texts_".$this->lang.".php doesn't exist!");
 		}
 		
 		date_default_timezone_set($this->settings["website"]["time_zone"]);
@@ -105,11 +75,11 @@ class SiteManager
 	{
 		global $_REQUEST,$DBprefix;
 		
-		if(file_exists("modules/news/template.htm"))
+		if(file_exists("modules/news/pages/template.htm"))
 		{
 			$templateArray=array();
 			
-			$templateArray["html"] = file_get_contents('modules/news/template.htm');
+			$templateArray["html"] = file_get_contents('modules/news/pages/template.htm');
 		
 		}
 		
@@ -164,11 +134,6 @@ class SiteManager
 				}
 			}
 		}
-
-		if(isset($_REQUEST["mod"])||isset($_REQUEST["page"]))
-		{
-			$this->TemplateHTML = str_replace('<a href="http://www.netartmedia.net','<a rel="nofollow" href="http://www.netartmedia.net',$this->TemplateHTML);
-		}
 	
 	}
 	
@@ -221,11 +186,6 @@ class SiteManager
 		if(!is_numeric($input)) die("");
 	} 
 	
-	function ForceLogin()
-	{
-		die("<script>document.location.href='login.php';</script>");
-	}
-	
 	
 	function sanitize($input)
 	{
@@ -272,29 +232,6 @@ class SiteManager
 		unset($tmp);
 	}
 
-	
-	function load_login_slides($product="")
-	{
-		
-		$url = "http://www.netartmedia.net/get_slides.php";		
-						
-		 $opts = array('http' =>
-		  array(
-
-			'timeout' => 20
-		  )
-		);
-		error_reporting(0);					   
-		$context  = stream_context_create($opts);
-		  
-		  $data = file_get_contents($url, false, $context);
-		  if(!$data)
-		  {
-			return false;
-		  }
-		  return simplexml_load_string($data);
-	}
-	
 	
 	function parse_csv($file, $delimiter=',') 
 	{
@@ -387,27 +324,6 @@ class SiteManager
 		return $retval;
 	}
 	
-	function Title($website_title)
-	{
-		$this->TemplateHTML = 
-		str_replace
-		(
-			"<site title/>",
-			strip_tags(stripslashes($website_title)),
-			$this->TemplateHTML
-		);
-	}
-	
-	function MetaDescription($meta_description)
-	{
-		$this->TemplateHTML = 
-		str_replace
-		(
-			"<site description/>",
-			strip_tags(stripslashes($meta_description)),
-			$this->TemplateHTML
-		);
-	}
 	
 }	
 ?>

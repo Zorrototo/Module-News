@@ -27,7 +27,7 @@ if($this->settings["website"]["enable_search"]==1) {
 <form action="<?php echo $homex;?>.php?m=news&p=news" method="post">
 <input type="hidden" name="page" value="results"/>
 <input type="hidden" name="proceed_search" value="1"/>
-<button type="submit" class="pull-right searchmod"><img src="modules/news/images/search.png" alt="<?php echo get_lang('search_news');}?>"></button><input required name="keyword_search" value="<?php if(isset($_REQUEST["keyword_search"])) { echo stripslashes($_REQUEST["keyword_search"]);} else { echo get_lang('search_news');}?>" type="text" class="pull-right searchmod"/>
+<button type="submit" class="pull-right searchmod"><img src="modules/news/images/search.png" alt="<?php echo get_lang('search_news');?>"></button><input required name="keyword_search" value="<?php if(isset($_REQUEST["keyword_search"])) { echo stripslashes($_REQUEST["keyword_search"]);} else { echo get_lang('search_news');}?>" type="text" class="pull-right searchmod"/>
 </form>
 <?php
 }
@@ -225,7 +225,7 @@ if($this->settings["website"]["enable_search"]==1) {
 	if($iTotResults==0)
 	{
 		?>
-		<i><?php echo get_lang('no_results');?></i>
+		<h3><span class='failure'><?php echo get_lang('no_results');?></span></h3>
 		<?php
 	}
 	?>
