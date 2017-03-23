@@ -66,5 +66,9 @@ define('empty_title', "Please fill the title");
 define('empty_description', "Please fill the content");
 define('empty_author', "Please fill the author name");
 define('GD_fail', "GD extension is NOT loaded on your server. Images upload disabled.");
-
+define('search_news', "Search the News");
+define('help', "help");
+define('help_date', "Get help regarding different formating of the date");
+define('ID_invalid', "The News ID does not exist");
+define('ID_not_set', "The News ID isn't set");
 ?>
