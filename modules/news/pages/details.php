@@ -118,10 +118,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 		
 		<?php
 		} else {
-			echo "<h2>".get_lang('latest_news')."</h2><h3 class='failure'>".get_lang('ID_invalid')."</h3>";
+			echo "<h2>".get_lang('latest_news')."</h2><br><h3><span class='failure'>".get_lang('ID_invalid')."</span></h3>";
 		}
 }
 else
 {
-	echo "<h2>".get_lang('latest_news')."</h2><h3 class='failure'>".get_lang('ID_not_set')."</h3>";
+	echo "<h2>".get_lang('latest_news')."</h2><br><h3><span class='failure'>".get_lang('ID_not_set')."</span></h3>";
 }
