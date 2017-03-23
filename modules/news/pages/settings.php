@@ -50,7 +50,7 @@ else {
 							<ol>
 								
 								<li>
-									<label><?php echo get_lang('date_format');?>:</label>
+									<label><?php echo get_lang('date_format');?> (<a href="http://php.net/manual/function.date.php" title="<?php echo get_lang('help_date');?>" target="_blank"><?php echo get_lang('help');?></a>):</label>
 									
 									<input type="text" name="date_format" value="<?php echo $ini_array["website"]["date_format"];?>"/>
 								</li>
@@ -58,7 +58,7 @@ else {
 								<li>
 									<label><?php echo get_lang('results_per_page');?>:</label>
 									
-									<input type="text" name="results_per_page" value="<?php echo $ini_array["website"]["results_per_page"];?>"/>
+									<input type="number" name="results_per_page" value="<?php echo $ini_array["website"]["results_per_page"];?>"/>
 								</li>
 									
 								<li>
@@ -70,15 +70,21 @@ else {
 									</select>
 									
 								</li>
+								<script>
+								  function handleChange(input) {
+									if (input.value < 0) input.value = 0;
+									if (input.value > 100) input.value = 100;
+								  }
+								</script>
 								<li>
 									<label><?php echo get_lang('image_quality');?>:</label>
 									
-									<input type="text" name="image_quality" value="<?php echo $ini_array["website"]["image_quality"];?>"/>
+									<input type="number" name="image_quality" value="<?php echo $ini_array["website"]["image_quality"];?>" onchange="handleChange(this);"/>
 								</li>
 								<li>
 									<label><?php echo get_lang('max_image_width');?>:</label>
 									
-									<input type="text" name="max_image_width" value="<?php echo $ini_array["website"]["max_image_width"];?>"/>
+									<input type="number" name="max_image_width" value="<?php echo $ini_array["website"]["max_image_width"];?>"/>
 								</li>
 								
 							<ol>

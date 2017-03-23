@@ -60,11 +60,15 @@ define('yes_word', "Oui");
 define('no_access', "Vous n'avez pas le droit d'accéder à cette page. Votre action va être logguée pour une inspection plus approfondie.");
 define('write_permission_required', "Permission en écriture requise");
 define('fix_permission', "Veuillez corriger les permissions. Le module ne fonctionnera pas correctement tant que vous ne corrigez pas toutes les permissions.");
-define('check_permissions', "Check Permissions");
+define('check_permissions', "Vérifier Permissions");
 define('OK_permission', "Les permissions requises sont toutes OK!");
 define('empty_title', "Veuillez renseigner un titre");
 define('empty_description', "Veuillez renseigner le contenu");
 define('empty_author', "Veuillez renseigner le nom de l'auteur");
 define('GD_fail', "L'extension GD n'est PAS chargée sur votre serveur. L'envoi d'images est désactivé.");
 define('search_news', "Rechercher les News");
+define('help', "aide");
+define('help_date', "Obtenir de l'aide concernant les différentes mise en forme de la date");
+define('ID_invalid', "L'ID de la News n'existe pas");
+define('ID_not_set', "L'ID de la News n'est pas défini");
 ?>

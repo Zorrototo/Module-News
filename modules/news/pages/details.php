@@ -6,19 +6,24 @@
 
 if(!defined('IN_SCRIPT')) die("");
 
-if(isset($_REQUEST["id"]))
+if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 {
 	$id=intval($_REQUEST["id"]);
-	$this->ms_i($id);
-
-$listings = simplexml_load_file($this->data_file);
-
-?>
-
+	
+	$listings = simplexml_load_file($this->data_file);
+	
+	if (isset($listings->listing[$id]))
+		{
+		?>
+		
 		<h2><?php echo strip_tags(html_entity_decode($listings->listing[$id]->title));?></h2>
-
+		
 		<div class="row">
 			<?php
+		
+			
+			
+			
 			if($listings->listing[$id]->images=="")
 			{
 				?>
@@ -111,9 +116,12 @@ $listings = simplexml_load_file($this->data_file);
 		
 		</div>
 		
-<?php
+		<?php
+		} else {
+			echo "<h2>".get_lang('latest_news')."</h2><h3 class='failure'>".get_lang('ID_invalid')."</h3>";
+		}
 }
 else
 {
-	echo "No ID found";
-}?>
+	echo "<h2>".get_lang('latest_news')."</h2><h3 class='failure'>".get_lang('ID_not_set')."</h3>";
+}

@@ -7,27 +7,14 @@
 ?><?php
 class SiteManager
 {
-	public $lang="en";
-	
 	public $page="results";
 	public $data_file = "modules/news/data/listings.xml";
-	public $arrPages = array();
-	public $domain = "";
-	public $multi_language = false;
-	private $db;
-	public $running_mode=1;
 	
 	
 	function SiteManager()
 	{
 		
 	}
-	
-	/// The website title and meta description and keywords,
-	/// which can be used for SEO purposes
-	public $Title = true;
-	public $Description = true;
-	public $Keywords = true;
 	
 	/// The html code of the website template
 	public $TemplateHTML = "";
@@ -42,12 +29,6 @@ class SiteManager
 	function SetDataFile($data_file)
 	{
 		$this->data_file= $data_file;
-	}
-		
-	function SetDatabase(Database $db)
-	{
-		$this->db = $db;
-	
 	}
 	
 	function SetPage($page)
@@ -103,39 +84,8 @@ class SiteManager
 			}
 		}
 		
-		
-		$arrTags=array();
-		
-		array_push($arrTags, array("top_right_menu","top_right_menu.php"));
-		array_push($arrTags, array("search_form","search_form.php"));
-		
-		
-		if(is_array($arrTags))
-		{
-			foreach($arrTags as $arrTag)
-			{
-				$tag_pos = strpos($this->TemplateHTML,"<site ".$arrTag[0]."/>");
-			
-				if($tag_pos !== false)
-				{
-					if(trim($arrTag[1]) != "none" && trim($arrTag[0]) != "" && trim($arrTag[1]) != "")
-					{
-						$HTML="";
-						ob_start();
-						include("include/".$arrTag[1]);
-						
-						if($HTML=="")
-						{
-							$HTML = ob_get_contents();
-						}
-						ob_end_clean();
-						$this->TemplateHTML = str_replace("<site ".$arrTag[0]."/>",$HTML,$this->TemplateHTML);
-					}
-				}
-			}
-		}
-	
 	}
+	
 	
 	function Render()
 	{
@@ -159,61 +109,22 @@ class SiteManager
 		
 		echo $this->TemplateHTML;
 	}
-
+	
 	
 	function check_word($input)
 	{
 		if(!preg_match("/^[a-zA-Z0-9_]+$/i", $input)) die("");
 	}
 	
-	function check_extended_word($input)
-	{
-		if(!preg_match("/^[a-zA-Z0-9_\-. @]+$/i", $input)) die("");
-	} 
-	
-	function check_integer($input)
-	{
-		if(!is_numeric($input)) die("");
-	} 
-	
-	function ms_ia($input)
-	{
-		foreach($input as $inp) if(!is_numeric($inp)) die("");
-	}
 	
 	function ms_i($input)
 	{
 		if(!is_numeric($input)) die("");
 	} 
 	
-	
-	function sanitize($input)
-	{
-		$strip_chars = array("~", "`", "!","#", "$", "%", "^", "&", "*", "(", ")", "=", "+", "[", "{", "]",
-                 "}", "\\", "|", ";", ":", "\"", "'", "&#8216;", "&#8217;", "&#8220;", "&#8221;", "&#8211;", "&#8212;",
-                 ",", "<", ">", "/", "?");
-		$output = trim(str_replace($strip_chars, " ", strip_tags($input)));
-		$output = preg_replace('/\s+/', ' ',$output);
-		$output = preg_replace('/\-+/', '-',$output);
-		return $output;
-	}
-	
-	
-	function str_rot($s, $n = 13) {
-    static $letters = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
-    $n = (int)$n % 26;
-    if (!$n) return $s;
-    if ($n < 0) $n += 26;
-    if ($n == 13) return str_rot13($s);
-    $rep = substr($letters, $n * 2) . substr($letters, 0, $n * 2);
-    return strtr($s, $letters, $rep);
-}
-
-	
-
 	function write_ini_file($file, array $options)
 	{
-		$tmp = '; <?php exit;?>';
+		$tmp = '<?php exit;?>';
 		$tmp.="\n\n";
 		foreach($options as $section => $values){
 			$tmp .= "[$section]\n";
@@ -231,45 +142,6 @@ class SiteManager
 		file_put_contents($file, $tmp);
 		unset($tmp);
 	}
-
-	
-	function parse_csv($file, $delimiter=',') 
-	{
-		$field_names=array();
-		$res=array();
-		
-		if (($handle = fopen($file, "r")) !== FALSE) 
-		{ 
-			$i = 0; 
-			while (($lineArray = fgetcsv($handle, 4000, $delimiter)) !== FALSE) 
-			{ 
-				
-				if($i==0)
-				{
-					for ($j=0; $j<count($lineArray); $j++) 
-					{ 
-						$field_names[$j] = $lineArray[$j]; 
-					}
-				}
-				else
-				{
-					for ($j=0; $j<count($lineArray); $j++) 
-					{ 
-						if(isset($field_names[$j]))
-						{
-							$data2DArray[$i-1][$field_names[$j]] = $lineArray[$j]; 
-						}
-					}
-				}				
-				$i++; 
-			} 
-			fclose($handle); 
-		} 
-			
-		
-		return $data2DArray; 
-		
-	} 
 	
 	function format_str($strTitle)
 	{
