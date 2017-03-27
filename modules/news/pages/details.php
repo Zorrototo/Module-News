@@ -41,9 +41,13 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 			?>
 					<br>
 				<?php 
+				if($this->settings["website"]["enable_safe_HTML"]==1) {
 					require_once('modules/news/include/library/HTMLPurifier.auto.php');
 					$purificateur = new HTMLPurifier();
 					echo $purificateur->purify($listings->listing[$id]->description);
+				} else {
+					echo $listings->listing[$id]->description;
+				}
 					?>
 
 			</div>
