@@ -71,4 +71,5 @@ define('help', "aide");
 define('help_date', "Obtenir de l'aide concernant les différentes mise en forme de la date");
 define('ID_invalid', "L'ID de la News n'existe pas");
 define('ID_not_set', "L'ID de la News n'est pas défini");
+define('unauthorized_access', "Accès non authorisé depuis");
 ?>

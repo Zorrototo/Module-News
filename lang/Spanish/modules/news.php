@@ -71,4 +71,5 @@ define('help', "help");
 define('help_date', "Get help regarding different formating of the date");
 define('ID_invalid', "The News ID does not exist");
 define('ID_not_set', "The News ID isn't set");
+define('unauthorized_access', "Unauthorized access from");
 ?>
