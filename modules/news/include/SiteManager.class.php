@@ -54,8 +54,7 @@ class SiteManager
 	
 	function LoadTemplate()
 	{
-		global $_REQUEST,$DBprefix;
-		
+
 		if(file_exists("modules/news/pages/template.htm"))
 		{
 			$templateArray=array();
@@ -89,24 +88,24 @@ class SiteManager
 	
 	function Render()
 	{
+		$HTML = '';
+		ob_start();
 		
-		if($this->page!="")
-		{
-			$HTML="";
-			ob_start();
+		if(!file_exists("modules/news/pages/".$this->page.".php")) {
 			
-			if(file_exists("modules/news/pages/".$this->page.".php"))
-			{
-				include("modules/news/pages/".$this->page.".php");
-			
-			}
-			$HTML = ob_get_contents();
-			
-			$this->TemplateHTML=str_replace("<site content/>",$HTML,$this->TemplateHTML);
-			
-			ob_end_clean();
+			// If the given &page value doesn't exist, load either home.php or results.php depending on if the user
+			// is browsing the admin area or not - and display the index/default content.
+			$page = ($_REQUEST['p'] == 'admin_news') ? 'home' : 'results';
+			include("modules/news/pages/$page.php");
+		} else {
+
+			include("modules/news/pages/".$this->page.".php");
 		}
-		
+
+		$HTML = ob_get_contents();
+		$this->TemplateHTML=str_replace("<site content/>",$HTML,$this->TemplateHTML);
+
+		ob_end_clean();
 		echo $this->TemplateHTML;
 	}
 	

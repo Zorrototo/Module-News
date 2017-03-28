@@ -10,9 +10,8 @@ function exec_ogp_module() {
 
 	$website->LoadTemplate();
 
-	if(isset($_REQUEST["page"]))
+	if(!empty($_REQUEST["page"]) && preg_match("/^[a-z]+$/", $_REQUEST['page']))
 	{
-		$website->check_word($_REQUEST["page"]);
 		$website->SetPage($_REQUEST["page"]);
 	}
 

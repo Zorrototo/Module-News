@@ -48,7 +48,7 @@ define('modify_images', "Modify the new article images");
 define('upload_more_images', "Upload more images");
 define('latest_news', "Latest News");
 define('search_results', "Search Results");
-define('no_results', "No news were found.");
+define('no_results', "No news was found.");
 define('config_options', "News Options");
 define('date_format', "Date Format");
 define('results_per_page', "News per Page");
