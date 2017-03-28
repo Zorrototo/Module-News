@@ -211,7 +211,7 @@ else{
 							<?php echo get_lang('written_by');?>:
 						</div>
 						<div class="col-md-10">
-							<input class="form-control" type="text" name="written_by" required value="<?php echo $_REQUEST["written_by"];?>"/>
+							<input class="form-control" type="text" name="written_by" required value="<?php echo isset($_REQUEST["written_by"]) ? $_REQUEST["written_by"] : $_SESSION['users_login']; ?>"/>
 						</div>
 					</div>				
 									
