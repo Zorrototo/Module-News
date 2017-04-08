@@ -4,7 +4,6 @@
 // Find out more about our products and services on:
 // http://www.netartmedia.net
 // Released under the MIT license
-?><?php
 class SiteManager
 {
 	public $page="results";

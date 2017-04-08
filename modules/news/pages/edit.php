@@ -9,7 +9,7 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 	global $db;
 	echo '<h3>'.get_lang('no_access').'</h3>';
 	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	$db->logger(get_lang('unautorized_access').' '.$abuse_link);
+	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
 }
 else{
 

@@ -1,14 +1,14 @@
 <?php
-// News Lister
-// http://www.netartmedia.net/newslister
-// Copyright (c) All Rights Reserved NetArt Media
+// News Lister, http://www.netartmedia.net/newslister
+// A software product of NetArt Media, All Rights Reserved
 // Find out more about our products and services on:
 // http://www.netartmedia.net
 // Released under the MIT license
-
 if(!defined('IN_SCRIPT_ADMIN')) {
+	global $db;
 	echo '<h3>'.get_lang('no_access').'</h3>';
-	//log shit here
+	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
 }
 else{
 

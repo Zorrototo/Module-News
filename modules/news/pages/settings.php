@@ -3,10 +3,11 @@
 // Copyright (c) All Rights Reserved, NetArt Media 2003-2016
 // Check http://www.netartmedia.net/newslister for demos and information
 // Released under the MIT license
-
 if(!defined('IN_SCRIPT_ADMIN')) {
+	global $db;
 	echo '<h3>'.get_lang('no_access').'</h3>';
-	//log shit here
+	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
 }
 else {
 	?>
@@ -17,9 +18,13 @@ else {
 	<br/>
 	
 	<div class="container">
-
 			<br/>
 			<?php
+			// Check if the file "modules/news/config.php" is writable
+			$value = 'modules/news/config.php';
+			if ( !is_writable($value) ) {
+				echo "<h3>".$value." : <span class='failure'>".get_lang('write_permission_required')."</span> <a href=\"home.php?m=news&p=admin_news&page=permissions\">".get_lang('check_permissions')."</a></h3><br/><br/>";
+			}
 			
 			$ini_array = parse_ini_file("modules/news/config.php",true);
 			
