@@ -46,7 +46,7 @@ define('edit_listing', "Editar Articulos");
 define('modifications_saved', "Los cambios han sido guardados!");
 define('modify_images', "Modificar las imágenes del nuevo artículo");
 define('upload_more_images', "Subir más imágenes");
-define('latest_news', "Ultimos articulos");
+define('latest_news', "Últimos artículos");
 define('search_results', "Resultado de la búsqueda");
 define('no_results', "No se encontraron artículos.");
 define('config_options', "Opciones");
