@@ -18,7 +18,7 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 		
 		<h2><?php echo strip_tags(html_entity_decode($listings->listing[$id]->title));?></h2>
 		
-		<div class="row">
+		<div class="news-row">
 			<?php
 		
 			
@@ -27,13 +27,13 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 			if($listings->listing[$id]->images=="")
 			{
 				?>
-				<div class="col-md-12">
+				<div class="news-row">
 				<?php
 			}
 			else
 			{
 				?>
-				<div class="col-md-8">
+				<div class="news-two-third pull-left">
 				<?php
 				
 			}
@@ -56,7 +56,7 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 			{
 				/// showing the listing images
 				?>
-				<div class="col-md-4">
+				<div class="news-one-third pull-right">
 					<br><?php
 						$images=explode(",",trim($listings->listing[$id]->images,","));
 						
@@ -79,7 +79,7 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 							{
 								echo "<a href=\"modules/news/uploaded_images/".$images[$i].".jpg\" rel=\"prettyPhoto[ad_gal]\">";
 							}
-							echo "<img src=\"modules/news/thumbnails/".$images[$i].".jpg\" width=\"85\" alt=\"\"/>";
+							echo "<img class=\"thumbnail-detail\" src=\"modules/news/thumbnails/".$images[$i].".jpg\" width=\"85\" alt=\"\"/>";
 							if($i!=0)
 							{
 								echo "</a>";
@@ -110,12 +110,15 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 		<div class="clearfix"></div>
 		
 		<br/>
+		
+		
+		<div class="news-row">
 		<div class="pull-left">
 			<br><strong><?php echo date($this->settings["website"]["date_format"],intval($listings->listing[$id]->time));?></strong> - <?php echo get_lang('written_by');?>: <strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
 		</div>
 	
 		<div class="pull-right">
-			<a id="go_back_button" class="btn btn-default pull-right" href="<?php if (!empty($_SESSION['user_id'])) {echo "home";} else {echo "index";}?>.php?m=news&p=news"><?php echo get_lang('go_back');?></a>
+			<a id="go_back_button" class="news-btn news-btn-default pull-right" href="<?php if (!empty($_SESSION['user_id'])) {echo "home";} else {echo "index";}?>.php?m=news&p=news"><?php echo get_lang('go_back');?></a>
 		</div>
 		
 		</div>

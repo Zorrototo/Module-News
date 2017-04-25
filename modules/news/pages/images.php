@@ -9,24 +9,15 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 	echo '<h3>'.get_lang('no_access').'</h3>';
 	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
-}
-else{
-
+} else{
 $id=intval($_REQUEST["id"]);
-
 $this->ms_i($id);
-
 ?>
-			<h2><?php echo get_lang('modify_images');?></h2>		  
-			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
-			<br/><br/>
+	<h2><?php echo get_lang('modify_images');?></h2>		  
+	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 
 	<div class="container" id="main_content">
-
-			<br/>
-			<?php
-
-			
+	<?php
 			$xml = simplexml_load_file($this->data_file);
 			
 			$current_images = trim($xml->listing[$id]->images);
@@ -112,18 +103,11 @@ $this->ms_i($id);
 				$current_images=$str_images_list;
 			}	
 			
-			
-
-			
 			?>
 			
-			<div class="row">
-				<div class="col-md-12">
+				<div class="news-row">
 				
-					<br/>
-				
-				
-					<form action="home.php?m=news&p=admin_news" method="post"   enctype="multipart/form-data">
+				<form action="home.php?m=news&p=admin_news" method="post"   enctype="multipart/form-data">
 					<input type="hidden" name="page" value="images"/>
 					<input type="hidden" name="proceed_save" value="1"/>
 					<input type="hidden" name="id" value="<?php echo $id;?>"/>
@@ -135,7 +119,7 @@ $this->ms_i($id);
 
 						}
 						</script>
-						
+						<div class="news-row">
 						<div id="drag_images">
 						<?php
 						$iPicCounter = 0;
@@ -150,46 +134,46 @@ $this->ms_i($id);
 							?>
 								
 										
-								<div  ondragstart="javascript:img_drag_start(this)" style="float:left;width:220px;margin-right:20px;margin-bottom:20px;background:#ffffff;padding:10px" class="img-shadow drag_img" id="img<?php echo $image_ids[$i];?>">
+								<div  ondragstart="javascript:img_drag_start(this)" style="float:left;height:165px;margin:10px;background:#ffffff;padding:0px 10px 10px 10px" class="img-shadow drag_img" id="img<?php echo $image_ids[$i];?>">
 								<a class="pull-right" href="javascript:Dele('<?php echo $image_ids[$i];?>')"><img src="modules/news/images/cancel.gif" alt="<?php echo get_lang('delete');?>" width="21" height="20" border="0"></a>
 								<br>
-								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" width="200"/>
+								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" width="200" height="125"/>
 								
 							
 								</div>
 							<?php
 							}
-							?>		
+							?>
 							<span style="display:none">
 								<input type="file" name="userfile<?php echo $i;?>">
 							</span>
 							<?php
-
+							
 							$iPicCounter++;
 							
 						}
 						?>
-						</div>
-						<div class="clearfix"></div>	
-
+						</div></div>
+						<div class="clearfix"></div>
 						
+						<div class="news-row">
+						<br>
 						<?php if (extension_loaded('gd')) { ?>
 						<h3><?php echo get_lang('upload_more_images');?></h3>
-						<hr/>
+						<br/>
 						<input  type="file" class="pull-left" name="images[]" id="images"  multiple="multiple"/>
 						
-						<button type="submit" class="btn btn-primary pull-left"><?php echo get_lang('submit');?></button>
+						<button type="submit" class="news-btn news-btn-default pull-left"><?php echo get_lang('submit');?></button>
 						<?php
 						}else{
 							echo "<h3><span class='failure'>".get_lang('GD_fail')."</span></h3>";
 							}
-						?>
+						?></div>
 						
 						</form>
-			
+						
 						<script>
-
-
+						
 						function init_drag() 
 						{
 							
@@ -223,16 +207,12 @@ $this->ms_i($id);
 						$(init_drag);
 						</script>
 						
-						
-						
-						
+
 						<div class="clearfix"></div>
 						<br/><br/>
 				
 				</div>
 				
-			</div>
-
 	</div>
 	
 <?php

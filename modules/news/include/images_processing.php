@@ -153,13 +153,13 @@ if(isset($files))
 		imagejpeg($tn, $save_file_name, $image_quality) ; 
 		
 		//thumbnails generation
-			if($width < 240)
+			if($width < 250)
 			{
 				$thumb_width = $width;
 			}
 			else
 			{
-				$thumb_width = 240; 
+				$thumb_width = 250; 
 			}
 			$thumb_diff = $thumb_width / $width;
 			$thumb_height = $height * $thumb_diff; 

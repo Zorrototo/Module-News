@@ -10,18 +10,13 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 	echo '<h3>'.get_lang('no_access').'</h3>';
 	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
-}
-else{
-
+} else{
 $id=intval($_REQUEST["id"]);
-
 $this->ms_i($id);
-
 ?>
-		  
-			<h2><?php echo get_lang('edit_listing');?></h2>
-			<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
-			<br/><br/>
+ 	<h2><?php echo get_lang('edit_listing');?></h2>
+	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
+
 	<script>
 $(function(){
 	var offsetX = 20;
@@ -42,11 +37,8 @@ $(function(){
 	});
 });
 </script>
-	
 
 	<div class="container">
-
-			<br/>
 			<?php
 			
 			$xml = simplexml_load_file($this->data_file);
@@ -95,33 +87,33 @@ $(function(){
 					<input type="hidden" name="proceed_save" value="1"/>
 					<input type="hidden" name="id" value="<?php echo $id;?>"/>
 					
-						<div class="row">
-							<div class="col-md-2">
+						<div class="news-row">
+							<div class="one-sixth pull-left">
 									<?php echo get_lang('title');?>:
 							</div>
 						
-							<div class="col-md-10">
-								<input class="form-control" type="text" name="title" required value="<?php echo $xml->listing[$id]->title;?>"/>
+							<div class="eight-tenth pull-right">
+								<input class="news-form-control" type="text" name="title" required value="<?php echo $xml->listing[$id]->title;?>"/>
 							</div>
 						</div>
 						<br/>
-						<div class="row">
-							<div class="col-md-2">
+						<div class="news-row">
+							<div class="one-sixth pull-left">
 								<?php echo get_lang('description');?>:
 									
 									
 							</div>
-							<div class="col-md-10">
-								<textarea class="form-control" id="description" name="description" cols="40" rows="10"><?php echo $xml->listing[$id]->description;?></textarea>
+							<div class="eight-tenth pull-right">
+								<textarea class="news-form-control" id="description" name="description" cols="40" rows="10"><?php echo $xml->listing[$id]->description;?></textarea>
 							
 							</div>
 						</div>	
 						<br/>
-						<div class="row">
-							<div class="col-md-2">			
+						<div class="news-row">
+							<div class="one-sixth pull-left">			
 								<?php echo get_lang('images');?>:
 							</div>
-							<div class="col-md-10">	
+							<div class="eight-tenth pull-right">	
 								<?php
 								if(trim($xml->listing[$id]->images)!="")
 								{
@@ -150,24 +142,24 @@ $(function(){
 								?>	
 								<div class="clearfix"></div>
 								
-								<a class="underline-link" href="home.php?m=news&p=admin_news&page=images&id=<?php echo $id;?>"><?php echo get_lang('modify');?></a>
+								<a class="news-btn" href="home.php?m=news&p=admin_news&page=images&id=<?php echo $id;?>"><?php echo get_lang('modify');?></a>
 							</div>
 						</div>
 						<br/>
-						<div class="row">
-							<div class="col-md-2">
+						<div class="news-row">
+							<div class="one-sixth pull-left">
 								<?php echo get_lang('written_by');?>:
 							</div>
-							<div class="col-md-10">
+							<div class="eight-tenth pull-right">
 									
-									<input class="form-control" type="text" name="written_by" value="<?php echo $xml->listing[$id]->written_by;?>"/>
+									<input class="news-form-control" type="text" name="written_by" value="<?php echo $xml->listing[$id]->written_by;?>"/>
 							</div>
 						</div>
 						
 						
 						<div class="clearfix"></div>
 						<br/>
-						<button type="submit" class="btn btn-primary pull-right"> <?php echo get_lang('save');?> </button>
+						<button type="submit" class="news-btn news-btn-default pull-right"> <?php echo get_lang('save');?> </button>
 						<div class="clearfix"></div>
 					</form>
 				

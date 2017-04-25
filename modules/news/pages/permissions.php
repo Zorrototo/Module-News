@@ -5,17 +5,12 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 	$abuse_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$db->logger(get_lang('unauthorized_access').' '.$abuse_link);
 }
-else{
-	?>
+else{ ?>
 	<h2><?php echo get_lang('check_permissions');?></h2>
-
-	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
-	<br/>
+	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 
 	<?php
-
 	// Permissions check
-
 	// Check if the file "modules/news/config.php" is writable
 	$value = 'modules/news/config.php';
 	if ( !is_writable($value) ) {

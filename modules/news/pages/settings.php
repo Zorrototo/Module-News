@@ -13,12 +13,9 @@ else {
 	?>
 	
 	<h2><?php echo get_lang('config_options');?></h2>
-	
-	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
-	<br/>
+	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 	
 	<div class="container">
-			<br/>
 			<?php
 			// Check if the file "modules/news/config.php" is writable
 			$value = 'modules/news/config.php';
@@ -41,13 +38,10 @@ else {
 			
 			?>
 			
-			<div class="row">
-				<div class="col-md-12">
-				
-					<br/>
-				
-				
-					<form id="main" action="home.php?m=news&p=admin_news" method="post">
+			<div class="news-row">
+				<div class="news-row">
+				<br/>
+				<form id="main" action="home.php?m=news&p=admin_news" method="post">
 					<input type="hidden" name="page" value="settings"/>
 					<input type="hidden" name="proceed_save" value="1"/>
 						
@@ -97,8 +91,10 @@ else {
 						
 						<div class="clearfix"></div>
 						<br/>
-						<button type="submit" class="btn btn-primary pull-right"><?php echo get_lang('save');?></button>
+						<button type="submit" class="news-btn news-btn-default pull-right"><?php echo get_lang('save');?></button>
+						<br/>
 						<div class="clearfix"></div>
+						<br/>
 					</form>
 				
 				</div>

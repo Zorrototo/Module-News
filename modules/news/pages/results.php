@@ -10,34 +10,24 @@ if(!defined('IN_SCRIPT')) die("");
 if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}?>
 
 <h2>
-	<?php 
-	if(isset($_REQUEST["keyword_search"]))
-	{
-		echo get_lang('search_results');
-	}
-	else
-	{
-		echo get_lang('latest_news');
-	}
-	?>
-</h2>
-<?php
-if($this->settings["website"]["enable_search"]==1) {
-?>
-<form action="<?php echo $homex;?>.php?m=news&p=news" method="post">
+<?php 
+if(isset($_REQUEST["keyword_search"])) {
+	echo get_lang('search_results');
+} else {
+	echo get_lang('latest_news');
+}
+?></h2>
+
+<?php if($this->settings["website"]["enable_search"]==1) { ?>
+<div class="news-row"><form action="<?php echo $homex;?>.php?m=news&p=news" method="post">
 <input type="hidden" name="page" value="results"/>
 <input type="hidden" name="proceed_search" value="1"/>
-<button type="submit" class="pull-right searchmod"><img src="modules/news/images/search.png" alt="<?php echo get_lang('search_news');?>"></button><input required name="keyword_search" value="<?php if(isset($_REQUEST["keyword_search"])) { echo stripslashes($_REQUEST["keyword_search"]);} else { echo get_lang('search_news');}?>" type="text" class="pull-right searchmod"/>
-</form>
+<input id="search" required name="keyword_search" placeholder="<?php if(isset($_REQUEST["keyword_search"])) { echo stripslashes($_REQUEST["keyword_search"]);} else { echo get_lang('search_news');}?>" type="text" class="searchmod pull-right"/>
+</form></div>
 <?php
 }
 ?>
 
-<div class="clearfix"></div>
-
-<hr class="no-margin"/>
-
-<script src="js/results.js"></script>
 <br/>
 	<div class="clearfix"></div>
 	<div class="results-container">		
@@ -104,33 +94,28 @@ if($this->settings["website"]["enable_search"]==1) {
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="row">
-						<div class="col-sm-4 col-xs-12">
-							<a href="<?php echo $strLink;?>" class="btn-block result-details-link"><img alt="<?php echo strip_tags(html_entity_decode($listing->title));?>" class="img-responsive img-res" src="<?php if($images[0]==""||!file_exists("modules/news/thumbnails/".$images[0].".jpg")) echo "modules/news/images/no_pic.gif";else echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
+					<div class="news-row">
+						<div class="news-img pull-left">
+							<a href="<?php echo $strLink;?>" class="news-btn-block"><img alt="<?php echo strip_tags(html_entity_decode($listing->title));?>" class="img-responsive" src="<?php if($images[0]==""||!file_exists("modules/news/thumbnails/".$images[0].".jpg")) echo "modules/news/images/no_pic.gif";else echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
 						</div>
-						<div class="col-sm-8 col-xs-12">
-							<div class="details">
-								
-								<p class="description">
+						<div class="news-auto">
+							<div class="news-details">
+								<p class="news-description">
 									<?php
 									require_once('modules/news/include/library/HTMLPurifier.auto.php');
 									$purificateur = new HTMLPurifier();
 									echo $purificateur->purify($this->text_words($listing->description,80));?>
 								</p>
-								
-							
-								
-								<span class="is_r_featured"></span>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xs-6">
+					<div class="news-row">
+						<div class="news-half pull-left">
 						
 						</div>
-						<div class="col-xs-6">
+						<div class="news-half pull-right">
 							<div class="text-right">
-								<a href="<?php echo $strLink;?>" class="btn btn-primary"><?php echo get_lang('details');?></a>
+								<a href="<?php echo $strLink;?>" class="news-btn news-btn-default"><?php echo get_lang('details');?></a>
 							</div>
 						</div>
 					</div>

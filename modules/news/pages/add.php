@@ -13,10 +13,8 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 else{
 ?>
 	<h2><?php echo get_lang('add_new_listing');?></h2>
-	<a href="home.php?m=news&p=admin_news" style="margin-top:17px" class="btn btn-default pull-right"><?php echo get_lang('go_back');?></a>
-	<br/>
+	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 	<div class="container">
-		<br/><br/>
 			<?php
 			$show_add_form=true;
 			
@@ -111,34 +109,34 @@ else{
 					<input type="hidden" name="page" value="add"/>
 					<input type="hidden" name="proceed_save" value="1"/>
 				
-					<div class="row">
-						<div class="col-md-2">
+					<div class="news-row">
+						<div class="one-sixth pull-left">
 							<?php echo get_lang('title');?>:
 						</div>
-						<div class="col-md-10">
-									<input class="form-control" type="text" name="title" required value="<?php echo $_REQUEST["title"];?>"/>
+						<div class="eight-tenth pull-right">
+									<input class="news-form-control" type="text" name="title" required value="<?php echo $_REQUEST["title"];?>"/>
 						</div>
 					</div>
 					<br/>
-					<div class="row">
-						<div class="col-md-2">
+					<div class="news-row">
+						<div class="one-sixth pull-left">
 							<?php echo get_lang('description');?>:
 						</div>
-						<div class="col-md-10">
+						<div class="eight-tenth pull-right">
 							
 							
-							<textarea class="form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_POST["description"];?></textarea>
+							<textarea class="news-form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_POST["description"];?></textarea>
 							
 						</div>
 					</div>		
 					
 					<br/>
 					
-					<div class="row">
-						<div class="col-md-2">			
+					<div class="news-row">
+						<div class="one-sixth pull-left">			
 							<?php echo get_lang('images');?>:
 						</div>
-						<div class="col-md-10">		
+						<div class="eight-tenth pull-right">		
 						<?php if (extension_loaded('gd')) { ?>
 							<!--images upload-->
 							<script src="modules/news/js/jquery.uploadfile.js"></script>
@@ -206,12 +204,12 @@ else{
 					</div>
 					
 					<br/>
-					<div class="row">
-						<div class="col-md-2">
+					<div class="news-row">
+						<div class="one-sixth pull-left">
 							<?php echo get_lang('written_by');?>:
 						</div>
-						<div class="col-md-10">
-							<input class="form-control" type="text" name="written_by" required value="<?php echo isset($_REQUEST["written_by"]) ? $_REQUEST["written_by"] : $_SESSION['users_login']; ?>"/>
+						<div class="eight-tenth pull-right">
+							<input class="news-form-control" type="text" name="written_by" required value="<?php echo isset($_REQUEST["written_by"]) ? $_REQUEST["written_by"] : $_SESSION['users_login']; ?>"/>
 						</div>
 					</div>				
 									
@@ -223,7 +221,7 @@ else{
 						
 				<div class="clearfix"></div>
 				<br/>
-				<button type="submit" class="btn btn-primary pull-right"> <?php echo get_lang('submit');?> </button>
+				<button type="submit" class="news-btn news-btn-default pull-right"> <?php echo get_lang('submit');?> </button>
 				<div class="clearfix"></div>
 			</form>
 				

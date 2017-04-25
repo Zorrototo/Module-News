@@ -52,7 +52,7 @@ if(isset($_POST["proceed_delete"])&&trim($_POST["proceed_delete"])!="")
 <script>
 $(function(){
 	var offsetX = 20;
-	var offsetY = -200;
+	var offsetY = -300;
 	$('a.hover').hover(function(e){	
 		var href = $(this).attr('href');
 		$('<img id="largeImage" src="' + href + '" alt="image" />')
@@ -87,8 +87,9 @@ function ValidateSubmit(form)
 
 	<br/>
 	
-	<div class="col-md-3 pull-right no-right-padding">
-		<div class="db-wrap"  onclick="javascript:LoadPage('permissions')" onmouseover="javascript:OverDB(this, 3)" onmouseout="javascript:OutDB(this)">
+	<div class="news-row fixed-height">
+	<div class="one-quarter pull-right">
+		<div class="db-wrap"  onclick="javascript:LoadPage('permissions')" onmouseover="javascript:OverDB(this, 1)" onmouseout="javascript:OutDB(this)">
 			
 			<a href="home.php?m=news&p=admin_news&page=permissions">
 				<img src="modules/news/images/permissions.png" class="pull-left arrow-img"/>
@@ -99,12 +100,12 @@ function ValidateSubmit(form)
 			<div class="clearfix"></div>
 		
 						
-			<div class="back-color-3" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
+			<div class="news-back-color-1" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
 		</div>
 	</div>
 		
-	<div class="col-md-3 pull-right no-right-padding">
-		<div class="db-wrap"  onclick="javascript:LoadPage('settings')" onmouseover="javascript:OverDB(this, 5)" onmouseout="javascript:OutDB(this)">
+	<div class="one-quarter pull-right">
+		<div class="db-wrap"  onclick="javascript:LoadPage('settings')" onmouseover="javascript:OverDB(this, 3)" onmouseout="javascript:OutDB(this)">
 			
 			<a href="home.php?m=news&p=admin_news&page=settings">
 				<img src="modules/news/images/settings.png" class="pull-left arrow-img"/>
@@ -115,12 +116,12 @@ function ValidateSubmit(form)
 			<div class="clearfix"></div>
 		
 						
-			<div class="back-color-5" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
+			<div class="news-back-color-3" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
 		</div>
 	</div>
 	
-	<div class="col-md-3 pull-right no-right-padding">
-		<div class="db-wrap"  onclick="javascript:LoadPage('add')" onmouseover="javascript:OverDB(this, 4)" onmouseout="javascript:OutDB(this)">
+	<div class="one-quarter pull-right">
+		<div class="db-wrap"  onclick="javascript:LoadPage('add')" onmouseover="javascript:OverDB(this, 2)" onmouseout="javascript:OutDB(this)">
 			
 			<a href="home.php?m=news&p=admin_news&page=add">
 				<img src="modules/news/images/arrow.png" class="pull-left arrow-img"/>
@@ -131,8 +132,9 @@ function ValidateSubmit(form)
 			<div class="clearfix"></div>
 		
 						
-			<div class="back-color-4" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
+			<div class="news-back-color-2" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
 		</div>
+	</div>
 	</div>
 	
 	
@@ -141,21 +143,16 @@ function ValidateSubmit(form)
 	<input type="hidden" name="proceed_delete" value="1"/>
 	<input type="hidden" name="page" value="home"/>
 	
-	<h3 class="no-margin"><?php echo get_lang('your_current_listings');?></h3>
-	<br/>
 	<div class="table-responsive table-wrap">
 		<table class="table table-striped">
 		  <thead>
 			<tr>
-			
-			  <th width="80"><?php echo get_lang('edit');?></th>
-			  <th width="80"><?php echo get_lang('date');?></th>
-			 
-			  <th width="140"><?php echo get_lang('images');?></th>
-			  <th width="180"><?php echo get_lang('title');?></th>
-			  <th><?php echo get_lang('description');?></th>
-			
-			  <th width="80"><?php echo get_lang('delete');?></th>
+			  <th width="5%"><?php echo get_lang('edit');?></th>
+			  <th width="10%"><?php echo get_lang('date');?></th>
+			  <th width="20%"><?php echo get_lang('images');?></th>
+			  <th width="20%"><?php echo get_lang('title');?></th>
+			  <th width="40%"><?php echo get_lang('description');?></th>
+			  <th width="5%"><?php echo get_lang('delete');?></th>
 			</tr>
 		  </thead>
       <tbody>
@@ -176,7 +173,7 @@ function ValidateSubmit(form)
 				{
 					if(file_exists("modules/news/thumbnails/".$image_id.".jpg"))
 					{
-						echo "<a href=\"modules/news/uploaded_images/".$image_id.".jpg\" class=\"hover\"><img src=\"modules/news/thumbnails/".$image_id.".jpg\" class=\"admin-preview-thumbnail\"/></a>";
+						echo "<a href=\"modules/news/uploaded_images/".$image_id.".jpg\" class=\"hover\"><img src=\"modules/news/thumbnails/".$image_id.".jpg\" class=\"admin-preview-thumbnail no-float\"/></a>";
 						$has_image=true;
 					}
 					
@@ -185,7 +182,7 @@ function ValidateSubmit(form)
 				if(!$has_image)
 				{
 					?>
-					<img src="modules/news/images/no_pic.gif" width="50" class="admin-preview-thumbnail"/>
+					<img src="modules/news/images/no_pic.gif" width="50" class="admin-preview-thumbnail no-float"/>
 					<?php				
 				}
 				
@@ -207,8 +204,9 @@ function ValidateSubmit(form)
     </table>
   </div>
   <br/>
-  <button type="submit" class="btn btn-primary pull-right"><?php echo get_lang('delete');?></button>
-  
+  <div class="news-row">
+  <button type="submit" class="news-btn news-btn-default pull-right"><?php echo get_lang('delete');?></button>
+  </div>
   </form>
   <div class="clearfix"></div>
   <br/>
@@ -227,7 +225,7 @@ function LoadPage(x)
 
 function OverDB(element, x)
 {
-	element.className = "db-wrap back-color-"+x;
+	element.className = "db-wrap news-back-color-"+x;
 }
 
 function OutDB(element)
