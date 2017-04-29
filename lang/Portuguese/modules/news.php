@@ -21,7 +21,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
- 
+
 define('manage_listings', "Manage your news");
 define('add_new_listing', "Post News");
 define('your_current_listings', "Your current news");
@@ -55,6 +55,9 @@ define('results_per_page', "News per Page");
 define('enable_search', "Enable Search engine");
 define('image_quality', "Image quality (0-100)");
 define('max_image_width', "Maximum image width (px)");
+define('images_bottom', "Position of the images gallery");
+define('img_bottom', "Under the article");
+define('img_right', "Right side of the article");
 define('no_word', "No");
 define('yes_word', "Yes");
 define('no_access', "You do not have the right to access this page. Your action will be logged for further inspection.");

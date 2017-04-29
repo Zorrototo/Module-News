@@ -32,6 +32,7 @@ else {
 				$ini_array["website"]["enable_search"]=stripslashes($_POST["enable_search"]);
 				$ini_array["website"]["image_quality"]=stripslashes($_POST["image_quality"]);
 				$ini_array["website"]["max_image_width"]=stripslashes($_POST["max_image_width"]);
+				$ini_array["website"]["images_bottom"]=stripslashes($_POST["images_bottom"]);
 				
 				$this->write_ini_file("modules/news/config.php", $ini_array);
 			}
@@ -84,6 +85,14 @@ else {
 									<label><?php echo get_lang('max_image_width');?>:</label>
 									
 									<input type="number" name="max_image_width" value="<?php echo $ini_array["website"]["max_image_width"];?>"/>
+								</li>
+								<li>
+									<label><?php echo get_lang('images_bottom');?>:</label>
+									
+									<select name="images_bottom">
+										<option value="0" <?php if($ini_array["website"]["images_bottom"]=="0") echo "selected";?>><?php echo get_lang('img_right');?></option>
+										<option value="1" <?php if($ini_array["website"]["images_bottom"]=="1") echo "selected";?>><?php echo get_lang('img_bottom');?></option>
+									</select>
 								</li>
 								
 							<ol>

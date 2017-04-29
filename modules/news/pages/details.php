@@ -5,6 +5,7 @@
 // Released under the MIT license
 
 if(!defined('IN_SCRIPT')) die("");
+if (!empty($_SESSION['user_id'])) {$homex="home";} else {$homex="index";}
 
 if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 {
@@ -24,7 +25,7 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 			
 			
 			
-			if($listings->listing[$id]->images=="")
+			if($listings->listing[$id]->images=="" OR $this->settings["website"]["images_bottom"]==1)
 			{
 				?>
 				<div class="news-row">
@@ -56,8 +57,8 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 			{
 				/// showing the listing images
 				?>
-				<div class="news-one-third pull-right">
-					<br><?php
+				<div class="<?php if($this->settings["website"]["images_bottom"]==1){echo'news-row img-bottom';}else{echo'news-one-third pull-right';}?>">
+				<?php
 						$images=explode(",",trim($listings->listing[$id]->images,","));
 						
 						if(file_exists("modules/news/uploaded_images/".$images[0].".jpg"))
@@ -113,12 +114,12 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 		
 		
 		<div class="news-row">
-		<div class="pull-left">
+		<div class="news-half pull-left">
 			<br><strong><?php echo date($this->settings["website"]["date_format"],intval($listings->listing[$id]->time));?></strong> - <?php echo get_lang('written_by');?>: <strong><?php echo strip_tags(html_entity_decode(stripslashes($listings->listing[$id]->written_by)));?></strong>
 		</div>
 	
-		<div class="pull-right">
-			<a id="go_back_button" class="news-btn news-btn-default pull-right" href="<?php if (!empty($_SESSION['user_id'])) {echo "home";} else {echo "index";}?>.php?m=news&p=news"><?php echo get_lang('go_back');?></a>
+		<div class="news-half pull-right">
+			<a id="go_back_button" class="news-btn news-btn-default pull-right" href="<?php echo $homex;?>.php?m=news&p=news"><?php echo get_lang('go_back');?></a>
 		</div>
 		
 		</div>
