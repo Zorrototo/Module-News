@@ -29,9 +29,6 @@
     background-color: #fff;
     border-color: #cfdbe2
 }
-.text-right {
-    text-align: right
-}
 .pull-right {
     float: right!important
 }
@@ -177,6 +174,7 @@ border-radius: 5px;
 .news-auto {
     width: auto;
     overflow:hidden;
+    padding-top: 5px;
 }
 .news-two-third {
     width: 66%;
@@ -197,6 +195,7 @@ border-radius: 5px;
 .news-row:before {
     content: " ";
     display: table;
+    clear: both;
 }
 .panel-body:after,
 .news-row:after {

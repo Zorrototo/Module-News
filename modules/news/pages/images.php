@@ -137,7 +137,7 @@ $this->ms_i($id);
 								<div  ondragstart="javascript:img_drag_start(this)" style="float:left;height:165px;margin:10px;background:#ffffff;padding:0px 10px 10px 10px" class="img-shadow drag_img" id="img<?php echo $image_ids[$i];?>">
 								<a class="pull-right" href="javascript:Dele('<?php echo $image_ids[$i];?>')"><img src="modules/news/images/cancel.gif" alt="<?php echo get_lang('delete');?>" width="21" height="20" border="0"></a>
 								<br>
-								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" width="200" height="125"/>
+								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" height="125"/>
 								
 							
 								</div>

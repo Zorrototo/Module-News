@@ -95,18 +95,16 @@ if(isset($_REQUEST["keyword_search"])) {
 				</div>
 				<div class="panel-body">
 					<div class="news-row">
-						<div class="news-img pull-left">
-							<a href="<?php echo $strLink;?>" class="news-btn-block"><img alt="<?php echo strip_tags(html_entity_decode($listing->title));?>" class="img-responsive" src="<?php if($images[0]==""||!file_exists("modules/news/thumbnails/".$images[0].".jpg")) echo "modules/news/images/no_pic.gif";else echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
-						</div>
+					<?php if($images[0]!=""||file_exists("modules/news/thumbnails/".$images[0].".jpg")) { ?>
+					<div class="news-img pull-left">
+						<a href="<?php echo $strLink;?>" class="news-btn-block"><img alt="<?php echo strip_tags(html_entity_decode($listing->title));?>" class="img-responsive" src="<?php echo "modules/news/thumbnails/".$images[0].".jpg";?>"/></a>
+					</div>
+					<?php } ?>
 						<div class="news-auto">
-							<div class="news-details">
-								<p class="news-description">
-									<?php
-									require_once('modules/news/include/library/HTMLPurifier.auto.php');
-									$purificateur = new HTMLPurifier();
-									echo $purificateur->purify($this->text_words($listing->description,80));?>
-								</p>
-							</div>
+							<?php
+							require_once('modules/news/include/library/HTMLPurifier.auto.php');
+							$purificateur = new HTMLPurifier();
+							echo $purificateur->purify($this->text_words($listing->description,80));?>
 						</div>
 					</div>
 					<div class="news-row">
@@ -114,9 +112,7 @@ if(isset($_REQUEST["keyword_search"])) {
 						
 						</div>
 						<div class="news-half pull-right">
-							<div class="text-right">
-								<a href="<?php echo $strLink;?>" class="news-btn news-btn-default"><?php echo get_lang('details');?></a>
-							</div>
+							<a href="<?php echo $strLink;?>" class="news-btn news-btn-default  pull-right"><?php echo get_lang('details');?></a>
 						</div>
 					</div>
 				</div>

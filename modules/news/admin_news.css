@@ -199,7 +199,8 @@ border-radius: 5px;
 .news-row:after,
 .news-row:before {
     content: " ";
-    display: table
+    display: table;
+    clear: both;
 }
 
 .panel-body:after,
