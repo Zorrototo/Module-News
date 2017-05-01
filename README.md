@@ -8,10 +8,6 @@ Based on News Lister from www.netartmedia.net/
 - contact form
 - login
 
-**To Do List**
-- clean the CSSs...
-- ...
-
 **Install Requirement and Other**
 - Place the "lang" and "modules" folder inside OGP Panel main directory, then install module from Administration->Modules
 - NO database required, news are stored in XML files
