@@ -75,4 +75,9 @@ define('help_date', "Obtener ayuda sobre los diferentes formatos de fecha");
 define('ID_invalid', "El ID de artículo no existe");
 define('ID_not_set', "El ID de artículo no está establecido");
 define('unauthorized_access', "Acceso no autorizado desde");
+define('safe_HTML', "HTML Purifier");
+define('safe_HTML_en', "HTML Purifier enabled");
+define('safe_HTML_dis', "HTML Purifier disabled");
+define('safe_HTML_en_info', "The HTML content of the article in the detailed view will be purified. This will lead in the removal of some HTML tags like iframes. Edit the file <b>modules/news/config.php</b> to change the setting 'safe_HTML' from value '1' (enabled) to value '0' (disabled) to diabled this bahavior and allow usage of full HTML without restriction.");
+define('safe_HTML_dis_info', "The HTML content of the article in the detailed view will not be purified. Edit the file <b>modules/news/config.php</b> to change the setting 'safe_HTML' from value '0' (disabled) to value '1' (enabled) to enable safe HTML tags usage only.");
 ?>
