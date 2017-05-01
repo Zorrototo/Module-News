@@ -75,9 +75,4 @@ define('help_date', "Get help regarding different formating of the date");
 define('ID_invalid', "The News ID does not exist");
 define('ID_not_set', "The News ID isn't set");
 define('unauthorized_access', "Unauthorized access from");
-define('safe_HTML', "HTML Purifier");
-define('safe_HTML_en', "HTML Purifier enabled");
-define('safe_HTML_dis', "HTML Purifier disabled");
-define('safe_HTML_en_info', "The HTML content of the article in the detailed view will be purified. This will lead in the removal of some HTML tags like iframes. Edit the file <b>modules/news/config.php</b> to change the setting 'safe_HTML' from value '1' (enabled) to value '0' (disabled) to diabled this bahavior and allow usage of full HTML without restriction.");
-define('safe_HTML_dis_info', "The HTML content of the article in the detailed view will not be purified. Edit the file <b>modules/news/config.php</b> to change the setting 'safe_HTML' from value '0' (disabled) to value '1' (enabled) to enable safe HTML tags usage only.");
 ?>
