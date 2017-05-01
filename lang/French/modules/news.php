@@ -75,4 +75,9 @@ define('help_date', "Obtenir de l'aide concernant les différentes mise en forme
 define('ID_invalid', "L'ID de la News n'existe pas");
 define('ID_not_set', "L'ID de la News n'est pas défini");
 define('unauthorized_access', "Accès non authorisé depuis");
+define('safe_HTML', "Purificateur HTML");
+define('safe_HTML_en', "Purificateur HTML activé");
+define('safe_HTML_dis', "Purificateur HTML désactivé");
+define('safe_HTML_en_info', "Le contenu HTML de l'article sera contrôlé et purifié dans l'affichage détaillé. Cela entrainera la suppression de balises HTML comme les iframes. Editez le fichier <b>modules/news/config.php</b> pour changer le paramètre 'safe_HTML' de la valeur '1' (activé) vers la valeur '0' (désactivé) pour désactiver ce comportement et autoriser le HTML sans restriction.");
+define('safe_HTML_dis_info', "Le contenu HTML de l'article ne sera pas contrôlé et purifié dans l'affichage détaillé. Editez le fichier <b>modules/news/config.php</b> pour changer le paramètre 'safe_HTML' de la valeur '0' (désactivé) vers la valeur '1' (activé) pour n'autoriser seulement le HTML sûr.");
 ?>

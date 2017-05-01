@@ -48,34 +48,24 @@ else {
 						
 						<fieldset>
 							<ol>
+							
+								<script>
+								  function handleChange(input) {
+									if (input.value < 1) input.value = 1;
+									if (input.value > 100) input.value = 100;
+								  }
+								</script>
 								
 								<li>
 									<label><?php echo get_lang('date_format');?> (<a href="http://php.net/manual/function.date.php" title="<?php echo get_lang('help_date');?>" target="_blank"><?php echo get_lang('help');?></a>):</label>
 									
 									<input type="text" name="date_format" value="<?php echo $ini_array["website"]["date_format"];?>"/>
 								</li>
-								
 								<li>
 									<label><?php echo get_lang('results_per_page');?>:</label>
 									
-									<input type="number" name="results_per_page" value="<?php echo $ini_array["website"]["results_per_page"];?>"/>
+									<input type="number" name="results_per_page" value="<?php echo $ini_array["website"]["results_per_page"];?>" onchange="handleChange(this);"/>
 								</li>
-									
-								<li>
-									<label><?php echo get_lang('enable_search');?>:</label>
-									
-									<select name="enable_search">
-										<option value="0" <?php if($ini_array["website"]["enable_search"]=="0") echo "selected";?>><?php echo get_lang('no_word');?></option>
-										<option value="1" <?php if($ini_array["website"]["enable_search"]=="1") echo "selected";?>><?php echo get_lang('yes_word');?></option>
-									</select>
-									
-								</li>
-								<script>
-								  function handleChange(input) {
-									if (input.value < 0) input.value = 0;
-									if (input.value > 100) input.value = 100;
-								  }
-								</script>
 								<li>
 									<label><?php echo get_lang('image_quality');?>:</label>
 									
@@ -87,12 +77,29 @@ else {
 									<input type="number" name="max_image_width" value="<?php echo $ini_array["website"]["max_image_width"];?>"/>
 								</li>
 								<li>
+									<label><?php echo get_lang('enable_search');?>:</label>
+									
+									<select name="enable_search">
+										<option value="0" <?php if($ini_array["website"]["enable_search"]=="0") echo "selected";?>><?php echo get_lang('no_word');?></option>
+										<option value="1" <?php if($ini_array["website"]["enable_search"]=="1") echo "selected";?>><?php echo get_lang('yes_word');?></option>
+									</select>
+									
+								</li>
+								<li>
 									<label><?php echo get_lang('images_bottom');?>:</label>
 									
 									<select name="images_bottom">
 										<option value="0" <?php if($ini_array["website"]["images_bottom"]=="0") echo "selected";?>><?php echo get_lang('img_right');?></option>
 										<option value="1" <?php if($ini_array["website"]["images_bottom"]=="1") echo "selected";?>><?php echo get_lang('img_bottom');?></option>
 									</select>
+								</li>
+								<li>
+									<label><?php echo get_lang('safe_HTML');?>:</label>
+									<select name="enable_safe_HTML" disabled>
+										<option value="0" <?php if($ini_array["website"]["safe_HTML"]=="0") echo "selected";?>><?php echo get_lang('safe_HTML_dis');?></option>
+										<option value="1" <?php if($ini_array["website"]["safe_HTML"]=="1") echo "selected";?>><?php echo get_lang('safe_HTML_en');?></option>
+									</select>
+									<p><?php if($ini_array["website"]["safe_HTML"]=="1") { echo get_lang('safe_HTML_en_info');} else { echo get_lang('safe_HTML_dis_info');} ?></p>
 								</li>
 								
 							<ol>
