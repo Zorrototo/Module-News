@@ -400,6 +400,8 @@ left: 48%
 }
 .news-form-control-mce {
     min-height: 350px;
+    height: auto;
+    overflow: auto;
 }
 .form-field  {
     border:1px solid #aaaaaa;
