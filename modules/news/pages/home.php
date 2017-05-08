@@ -83,60 +83,21 @@ function ValidateSubmit(form)
 </script>
 <h2><?php echo get_lang('manage_listings');?></h2>
 
-<div class="container">
+<div class="news-container">
 
 	<br/>
 	
 	<div class="news-row fixed-height">
-	<div class="one-quarter pull-right">
-		<div class="db-wrap"  onclick="javascript:LoadPage('permissions')" onmouseover="javascript:OverDB(this, 1)" onmouseout="javascript:OutDB(this)">
-			
-			<a href="home.php?m=news&p=admin_news&page=permissions">
-				<img src="modules/news/images/permissions.png" class="pull-left arrow-img"/>
-				<span class="pull-left"><?php echo get_lang('check_permissions');?></span>
-			 
-			</a>
-			
-			<div class="clearfix"></div>
-		
-						
-			<div class="news-back-color-1" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
-		</div>
+	<a href="home.php?m=news&p=admin_news&page=permissions" class="adm_btn perm pull-right">
+	  <img src="modules/news/images/permissions.png"> <?php echo get_lang('check_permissions');?>
+	</a>
+	<a href="home.php?m=news&p=admin_news&page=settings" class="adm_btn opt pull-right">
+	  <img src="modules/news/images/settings.png"> <?php echo get_lang('config_options');?>
+	</a>
+	<a href="home.php?m=news&p=admin_news&page=add" class="adm_btn add pull-right">
+	  <img src="modules/news/images/arrow.png"> <?php echo get_lang('add_new_listing');?>
+	</a>
 	</div>
-		
-	<div class="one-quarter pull-right">
-		<div class="db-wrap"  onclick="javascript:LoadPage('settings')" onmouseover="javascript:OverDB(this, 3)" onmouseout="javascript:OutDB(this)">
-			
-			<a href="home.php?m=news&p=admin_news&page=settings">
-				<img src="modules/news/images/settings.png" class="pull-left arrow-img"/>
-				<span class="pull-left"><?php echo get_lang('config_options');?></span>
-			 
-			</a>
-			
-			<div class="clearfix"></div>
-		
-						
-			<div class="news-back-color-3" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
-		</div>
-	</div>
-	
-	<div class="one-quarter pull-right">
-		<div class="db-wrap"  onclick="javascript:LoadPage('add')" onmouseover="javascript:OverDB(this, 2)" onmouseout="javascript:OutDB(this)">
-			
-			<a href="home.php?m=news&p=admin_news&page=add">
-				<img src="modules/news/images/arrow.png" class="pull-left arrow-img"/>
-				<span class="pull-left"><?php echo get_lang('add_new_listing');?></span>
-			 
-			</a>
-			
-			<div class="clearfix"></div>
-		
-						
-			<div class="news-back-color-2" style="position:absolute;bottom:0px;left:0px;width:100%;height:7px"></div>
-		</div>
-	</div>
-	</div>
-	
 	
 	<div class="clearfix"></div>
 	<form class="no-margin" action="home.php?m=news&p=admin_news" method="post" onsubmit="return ValidateSubmit(this)">
@@ -183,7 +144,7 @@ function ValidateSubmit(form)
 				{
 					?>
 					<img src="modules/news/images/no_pic.gif" width="50" class="admin-preview-thumbnail no-float"/>
-					<?php				
+					<?php
 				}
 				
 				?>
@@ -197,9 +158,7 @@ function ValidateSubmit(form)
 			<?php
 			$i++;
 		}
-	  
-	  ?>
-     
+	?>
       </tbody>
     </table>
   </div>
@@ -210,34 +169,7 @@ function ValidateSubmit(form)
   </form>
   <div class="clearfix"></div>
   <br/>
-  
-  
-
-
-</div>	
-
-<script>
-
-function LoadPage(x)
-{
-	document.location.href="home.php?m=news&p=admin_news&page="+x;
-}
-
-function OverDB(element, x)
-{
-	element.className = "db-wrap news-back-color-"+x;
-}
-
-function OutDB(element)
-{
-	element.className = "db-wrap";
-}
-
-$("#a1").mouseover(function(){
-  $("#ul1").addClass("open").removeClass("closed")
-})
-</script>
-
+</div>
 <?php
 }
 ?>

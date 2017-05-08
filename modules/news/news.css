@@ -144,14 +144,12 @@ border-radius: 5px;
 .news-btn-block+.news-btn-block {
     margin-top: 5px
 }
-.img-bottom
-{
+.img-bottom {
     text-align: center; /* center  horizontally */
     vertical-align: middle; /* center  vertically */
     float: none !important;
 }
-.final-image
-{
+.final-image {
 	padding-top: 10px;
 	max-width:100%;
 	-moz-border-radius: 3px;

@@ -93,7 +93,7 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"]!="" && is_numeric($_REQUEST["id"]))
 						$(document).ready(function()
 						{
 							$("a[rel='prettyPhoto[ad_gal]']").prettyPhoto({
-
+								<?php if($this->settings["website"]["gallery_theme"]!='default') { ?>theme: '<?php echo $this->settings["website"]["gallery_theme"]; ?>' <?php } ?>
 							});
 						});
 						</script>

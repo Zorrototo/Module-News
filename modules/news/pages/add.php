@@ -14,7 +14,7 @@ else{
 ?>
 	<h2><?php echo get_lang('add_new_listing');?></h2>
 	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
-	<div class="container">
+	<div class="news-container">
 			<?php
 			$show_add_form=true;
 			
@@ -85,26 +85,40 @@ else{
 				}
 			}
 			
-			
-
 			if($show_add_form)
 			{
 			?>
-			
-			
 					<br/>
-				
+					
+				<?php 
+				if($this->settings["website"]["WYSIWYG"]=="TinyMCE") { ?>
+					<script src="modules/news/js/tinymce/tinymce.min.js"></script>
+					<script type="text/javascript">
+					tinymce.init({
+						selector: '#description',
+						inline: true,
+						menubar: false,
+						skin_url: 'modules/news/js/tinymce/skins/<?php echo $this->settings["website"]["tinymce_skin"]; ?>',
+						language: '<?php echo $this->settings["website"]["tinymce_lang"]; ?>',
+						plugins: [
+						'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+						'searchreplace wordcount visualblocks visualchars code fullscreen',
+						'insertdatetime media nonbreaking save table contextmenu directionality',
+						'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+						],
+						toolbar1: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image media | link unlink | removeformat',
+						toolbar2: 'styleselect | fontselect forecolor backcolor fontsizeselect | code',
+						image_advtab: true
+					});
+					</script>
+				<?php } else if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
 					<script src="modules/news/js/nicEdit.js" type="text/javascript"></script>
 					<script type="text/javascript">
 					bkLib.onDomLoaded(function() {
 						new nicEditor({fullPanel : true,iconsPath : 'modules/news/js/nicEditorIcons.gif'}).panelInstance('description');
 					});
 					</script>
-					<style>
-					.nicEdit-main{ background-color: white;}
-					.nicEdit-selected { border-style:none !important;}
-					*{outline-width: 0;}
-					</style>
+				<?php } ?>
 					<form  action="home.php?m=news&p=admin_news" method="post"   enctype="multipart/form-data">
 					<input type="hidden" name="page" value="add"/>
 					<input type="hidden" name="proceed_save" value="1"/>
@@ -123,12 +137,15 @@ else{
 							<?php echo get_lang('description');?>:
 						</div>
 						<div class="eight-tenth pull-right">
-							
-							
-							<textarea class="news-form-control" id="description" name="description" cols="40" rows="10" style="width:100%;height:100%"><?php echo $_POST["description"];?></textarea>
-							
+							<?php 
+							if($this->settings["website"]["WYSIWYG"]=="TinyMCE") { ?>
+							<div id="description" class="news-form-control news-form-control-mce"></div>
+							<?php }
+							if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
+							<textarea class="news-form-control" id="description" name="description" cols="40" rows="10"><?php echo $_POST["description"];?></textarea>
+							<?php } ?>
 						</div>
-					</div>		
+					</div>
 					
 					<br/>
 					
@@ -211,29 +228,17 @@ else{
 						<div class="eight-tenth pull-right">
 							<input class="news-form-control" type="text" name="written_by" required value="<?php echo isset($_REQUEST["written_by"]) ? $_REQUEST["written_by"] : $_SESSION['users_login']; ?>"/>
 						</div>
-					</div>				
-									
-										
+					</div>
+					
 					<input type="hidden" name="list_images" value="<?php if(isset($_POST["list_images"])) echo $_POST["list_images"];?>" id="list_images"/>
-				
+					
 					<div class="clearfix"></div>
-			
-						
+					
 				<div class="clearfix"></div>
 				<br/>
 				<button type="submit" class="news-btn news-btn-default pull-right"> <?php echo get_lang('submit');?> </button>
 				<div class="clearfix"></div>
 			</form>
-				
-			
-			<?php
-			}
-			?>
+			<?php } ?>
 	</div>
-	
-	<style>
-	textarea{background:white !important}
-	</style>
-<?php
-}
-?>
+<?php } ?>

@@ -15,7 +15,7 @@ else {
 	<h2><?php echo get_lang('config_options');?></h2>
 	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 	
-	<div class="container">
+	<div class="news-container">
 			<?php
 			// Check if the file "modules/news/config.php" is writable
 			$value = 'modules/news/config.php';
@@ -33,6 +33,10 @@ else {
 				$ini_array["website"]["image_quality"]=stripslashes($_POST["image_quality"]);
 				$ini_array["website"]["max_image_width"]=stripslashes($_POST["max_image_width"]);
 				$ini_array["website"]["images_bottom"]=stripslashes($_POST["images_bottom"]);
+				$ini_array["website"]["gallery_theme"]=stripslashes($_POST["gallery_theme"]);
+				$ini_array["website"]["WYSIWYG"]=stripslashes($_POST["WYSIWYG"]);
+				$ini_array["website"]["tinymce_lang"]=stripslashes($_POST["tinymce_lang"]);
+				$ini_array["website"]["tinymce_skin"]=stripslashes($_POST["tinymce_skin"]);
 				
 				$this->write_ini_file("modules/news/config.php", $ini_array);
 			}
@@ -83,7 +87,54 @@ else {
 										<option value="0" <?php if($ini_array["website"]["enable_search"]=="0") echo "selected";?>><?php echo get_lang('no_word');?></option>
 										<option value="1" <?php if($ini_array["website"]["enable_search"]=="1") echo "selected";?>><?php echo get_lang('yes_word');?></option>
 									</select>
+								</li>
+								<li>
+									<label><?php echo get_lang('WYSIWYG');?>:</label>
 									
+									<select name="WYSIWYG">
+										<option value="TinyMCE" <?php if($ini_array["website"]["WYSIWYG"]=="TinyMCE") echo "selected";?>>Tiny MCE</option>
+										<option value="NicEdit" <?php if($ini_array["website"]["WYSIWYG"]=="NicEdit") echo "selected";?>>Nic Edit</option>
+									</select>
+								</li>
+								<li>
+									<label><?php echo get_lang('tinymce_lang');?>:</label>
+									
+									<select name="tinymce_lang">
+										<option value="da" <?php if($ini_array["website"]["tinymce_lang"]=="da") echo "selected";?>><?php echo get_lang('da');?></option>
+										<option value="de" <?php if($ini_array["website"]["tinymce_lang"]=="de") echo "selected";?>><?php echo get_lang('de');?></option>
+										<option value="en_GB" <?php if($ini_array["website"]["tinymce_lang"]=="en_GB") echo "selected";?>><?php echo get_lang('en_GB');?></option>
+										<option value="es" <?php if($ini_array["website"]["tinymce_lang"]=="es") echo "selected";?>><?php echo get_lang('es');?></option>
+										<option value="fi" <?php if($ini_array["website"]["tinymce_lang"]=="fi") echo "selected";?>><?php echo get_lang('fi');?></option>
+										<option value="fr_FR" <?php if($ini_array["website"]["tinymce_lang"]=="fr_FR") echo "selected";?>><?php echo get_lang('fr_FR');?></option>
+										<option value="it" <?php if($ini_array["website"]["tinymce_lang"]=="it") echo "selected";?>><?php echo get_lang('it');?></option>
+										<option value="pl" <?php if($ini_array["website"]["tinymce_lang"]=="pl") echo "selected";?>><?php echo get_lang('pl');?></option>
+										<option value="pt_PT" <?php if($ini_array["website"]["tinymce_lang"]=="pt_PT") echo "selected";?>><?php echo get_lang('pt_PT');?></option>
+										<option value="ru" <?php if($ini_array["website"]["tinymce_lang"]=="ru") echo "selected";?>><?php echo get_lang('ru');?></option>
+									</select>
+								</li>
+								<li>
+									<label><?php echo get_lang('tinymce_skin');?>:</label>
+									
+									<select name="tinymce_skin">
+										<option value="lightgray" <?php if($ini_array["website"]["tinymce_skin"]=="lightgray") echo "selected";?>>lightgray</option>
+										<option value="lightgray-gradient" <?php if($ini_array["website"]["tinymce_skin"]=="lightgray-gradient") echo "selected";?>>lightgray-gradient</option>
+										<option value="charcoal" <?php if($ini_array["website"]["tinymce_skin"]=="charcoal") echo "selected";?>>charcoal</option>
+										<option value="tundora" <?php if($ini_array["website"]["tinymce_skin"]=="tundora") echo "selected";?>>tundora</option>
+										<option value="custom" <?php if($ini_array["website"]["tinymce_skin"]=="custom") echo "selected";?>>custom</option>
+									</select>
+									<?php if($ini_array["website"]["tinymce_skin"]=="custom") { ?><br><p><img src="modules/news/images/warning.png"> <?php echo get_lang('tinymce_skin_custom'); ?></p> <?php } ?>
+								</li>
+								<li>
+									<label><?php echo get_lang('gallery_theme');?>:</label>
+									
+									<select name="gallery_theme">
+										<option value="default" <?php if($ini_array["website"]["gallery_theme"]=="default") echo "selected";?>>Default</option>
+										<option value="light_rounded" <?php if($ini_array["website"]["gallery_theme"]=="light_rounded") echo "selected";?>>Light Rounded</option>
+										<option value="light_square" <?php if($ini_array["website"]["gallery_theme"]=="light_square") echo "selected";?>>Light Square</option>
+										<option value="dark_rounded" <?php if($ini_array["website"]["gallery_theme"]=="dark_rounded") echo "selected";?>>Dark Rounded</option>
+										<option value="dark_square" <?php if($ini_array["website"]["gallery_theme"]=="dark_square") echo "selected";?>>Dark Square</option>
+										<option value="facebook" <?php if($ini_array["website"]["gallery_theme"]=="facebook") echo "selected";?>>Facebook</option>
+									</select>
 								</li>
 								<li>
 									<label><?php echo get_lang('images_bottom');?>:</label>
@@ -99,7 +150,7 @@ else {
 										<option value="0" <?php if($ini_array["website"]["safe_HTML"]=="0") echo "selected";?>><?php echo get_lang('safe_HTML_dis');?></option>
 										<option value="1" <?php if($ini_array["website"]["safe_HTML"]=="1") echo "selected";?>><?php echo get_lang('safe_HTML_en');?></option>
 									</select>
-									<p><?php if($ini_array["website"]["safe_HTML"]=="1") { echo get_lang('safe_HTML_en_info');} else { echo get_lang('safe_HTML_dis_info');} ?></p>
+									<br><p><?php if($ini_array["website"]["safe_HTML"]=="1") { echo get_lang('safe_HTML_en_info');} else { echo get_lang('safe_HTML_dis_info');} ?></p>
 								</li>
 								
 							<ol>
@@ -116,7 +167,7 @@ else {
 				</div>
 				
 			</div>
-
+			
 	</div>
 
 <?php

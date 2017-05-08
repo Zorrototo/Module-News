@@ -16,14 +16,11 @@ $this->ms_i($id);
 	<h2><?php echo get_lang('modify_images');?></h2>		  
 	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 
-	<div class="container" id="main_content">
+	<div class="news-container" id="main_content">
 	<?php
 			$xml = simplexml_load_file($this->data_file);
 			
 			$current_images = trim($xml->listing[$id]->images);
-
-			
-			
 			
 			if(isset($_REQUEST["current"])&&isset($_REQUEST["new"]))
 			{
@@ -134,7 +131,7 @@ $this->ms_i($id);
 							?>
 								
 										
-								<div  ondragstart="javascript:img_drag_start(this)" style="float:left;height:165px;margin:10px;background:#ffffff;padding:0px 10px 10px 10px" class="img-shadow drag_img" id="img<?php echo $image_ids[$i];?>">
+								<div  ondragstart="javascript:img_drag_start(this)" class="drag_img" id="img<?php echo $image_ids[$i];?>">
 								<a class="pull-right" href="javascript:Dele('<?php echo $image_ids[$i];?>')"><img src="modules/news/images/cancel.gif" alt="<?php echo get_lang('delete');?>" width="21" height="20" border="0"></a>
 								<br>
 								<img  src="modules/news/thumbnails/<?php echo $image_ids[$i];?>.jpg" alt="" height="125"/>

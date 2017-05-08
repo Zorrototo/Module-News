@@ -30,7 +30,7 @@ if(isset($_REQUEST["keyword_search"])) {
 
 <br/>
 	<div class="clearfix"></div>
-	<div class="results-container">		
+	<div class="news-container">		
 	
 	<?php	
 	$PageSize = intval($this->settings["website"]["results_per_page"]);

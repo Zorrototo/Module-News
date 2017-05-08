@@ -14,7 +14,7 @@ if(!defined('IN_SCRIPT_ADMIN')) {
 $id=intval($_REQUEST["id"]);
 $this->ms_i($id);
 ?>
- 	<h2><?php echo get_lang('edit_listing');?></h2>
+	<h2><?php echo get_lang('edit_listing');?></h2>
 	<div class="news-row goback"><a href="home.php?m=news&p=admin_news" class="news-btn news-btn-default pull-right"><?php echo get_lang('go_back');?></a></div>
 
 	<script>
@@ -38,7 +38,7 @@ $(function(){
 });
 </script>
 
-	<div class="container">
+	<div class="news-container">
 			<?php
 			
 			$xml = simplexml_load_file($this->data_file);
@@ -61,27 +61,38 @@ $(function(){
 				
 				$xml->asXML($this->data_file); 
 				echo "<h3>".get_lang('modifications_saved')."</h3><br/>";
-			}	
+			} ?>
 			
-			
-
-			
-			?>
-			
-	
 					<br/>
-				
+				<?php 
+				if($this->settings["website"]["WYSIWYG"]=="TinyMCE") { ?>
+					<script src="modules/news/js/tinymce/tinymce.min.js"></script>
+					<script type="text/javascript">
+					tinymce.init({
+						selector: '#description',
+						inline: true,
+						menubar: false,
+						skin_url: 'modules/news/js/tinymce/skins/<?php echo $this->settings["website"]["tinymce_skin"]; ?>',
+						language: '<?php echo $this->settings["website"]["tinymce_lang"]; ?>',
+						plugins: [
+						'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+						'searchreplace wordcount visualblocks visualchars code fullscreen',
+						'insertdatetime media nonbreaking save table contextmenu directionality',
+						'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+						],
+						toolbar1: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | image media | link unlink | removeformat',
+						toolbar2: 'styleselect | fontselect forecolor backcolor fontsizeselect | code',
+						image_advtab: true
+					});
+					</script>
+				<?php } else if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
 					<script src="modules/news/js/nicEdit.js" type="text/javascript"></script>
 					<script type="text/javascript">
 					bkLib.onDomLoaded(function() {
 						new nicEditor({fullPanel : true,iconsPath : 'modules/news/js/nicEditorIcons.gif'}).panelInstance('description');
 					});
 					</script>
-					<style>
-					.nicEdit-main{ background-color: white;}
-					.nicEdit-selected { border-style:none !important;}
-					*{outline-width: 0;}
-					</style>
+				<?php } ?>
 					<form  action="home.php?m=news&p=admin_news" method="post"   enctype="multipart/form-data">
 					<input type="hidden" name="page" value="edit"/>
 					<input type="hidden" name="proceed_save" value="1"/>
@@ -100,14 +111,17 @@ $(function(){
 						<div class="news-row">
 							<div class="one-sixth pull-left">
 								<?php echo get_lang('description');?>:
-									
-									
 							</div>
 							<div class="eight-tenth pull-right">
+								<?php 
+								if($this->settings["website"]["WYSIWYG"]=="TinyMCE") { ?>
+								<div id="description" class="news-form-control news-form-control-mce"><?php echo $xml->listing[$id]->description;?></div>
+								<?php }
+								if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
 								<textarea class="news-form-control" id="description" name="description" cols="40" rows="10"><?php echo $xml->listing[$id]->description;?></textarea>
-							
+								<?php } ?>
 							</div>
-						</div>	
+						</div>
 						<br/>
 						<div class="news-row">
 							<div class="one-sixth pull-left">			
@@ -118,7 +132,7 @@ $(function(){
 								if(trim($xml->listing[$id]->images)!="")
 								{
 									$image_ids = explode(",",trim($xml->listing[$id]->images));
-				
+									
 									foreach($image_ids as $image_id)
 									{
 										if(file_exists("modules/news/thumbnails/".$image_id.".jpg"))
@@ -127,19 +141,12 @@ $(function(){
 										}
 										
 									}
-									?>
 									
-									
-									<?php
 								}
-								else
-								{
-									?>
+								else { ?>
 									<img src="modules/news/images/no_pic.gif" width="50" class="admin-preview-thumbnail"/>
-									<?php
-								}
-																	
-								?>	
+								<?php } ?>
+								
 								<div class="clearfix"></div>
 								
 								<a class="news-btn" href="home.php?m=news&p=admin_news&page=images&id=<?php echo $id;?>"><?php echo get_lang('modify');?></a>
@@ -156,16 +163,11 @@ $(function(){
 							</div>
 						</div>
 						
-						
 						<div class="clearfix"></div>
+						
 						<br/>
 						<button type="submit" class="news-btn news-btn-default pull-right"> <?php echo get_lang('save');?> </button>
 						<div class="clearfix"></div>
 					</form>
-				
-				
 	</div>
-	
-<?php
-}
-?>
+<?php } ?>
