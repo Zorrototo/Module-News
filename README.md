@@ -3,10 +3,6 @@ Simple news module for OGP
 
 Based on News Lister from www.netartmedia.net/
 
-**Removed unused features:**
-- google maps
-- contact form
-- login
 
 **Install Requirement and Other**
 - Place the "lang" and "modules" folder inside OGP Panel main directory, then install module from Administration->Modules
