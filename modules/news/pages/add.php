@@ -64,7 +64,7 @@ else{
 					$listing = $listings->addChild('listing');
 					$listing->addChild('time', time());
 					$listing->addChild('title', stripslashes($_POST["title"]));
-					$article_content=stripslashes($_POST["description"]);
+					$article_content=stripslashes(str_replace('\r\n', '',$_POST["description"]));
 					$article_content=str_replace("&nbsp;"," ",$article_content);
 					
 					$listing->addChildWithCDATA('description', $article_content);
@@ -142,7 +142,7 @@ else{
 							<div id="description" class="news-form-control news-form-control-mce"></div>
 							<?php }
 							if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
-							<textarea class="news-form-control" id="description" name="description" cols="40" rows="10"><?php echo $_POST["description"];?></textarea>
+							<textarea class="news-form-control news-form-control-mce" id="description" name="description" cols="40" rows="10"><?php echo $_POST["description"];?></textarea>
 							<?php } ?>
 						</div>
 					</div>

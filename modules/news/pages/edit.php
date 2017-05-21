@@ -46,7 +46,7 @@ $(function(){
 		
 			if(isset($_POST["proceed_save"]))
 			{
-				$article_content=stripslashes($_POST["description"]);
+				$article_content=stripslashes(str_replace('\r\n', '',$_POST["description"]));
 				$article_content=str_replace("&nbsp;"," ",$article_content);
 				
 				$xml->listing[$id]->description=$article_content;
@@ -118,7 +118,7 @@ $(function(){
 								<div id="description" class="news-form-control news-form-control-mce"><?php echo $xml->listing[$id]->description;?></div>
 								<?php }
 								if($this->settings["website"]["WYSIWYG"]=="NicEdit") { ?>
-								<textarea class="news-form-control" id="description" name="description" cols="40" rows="10"><?php echo $xml->listing[$id]->description;?></textarea>
+								<textarea class="news-form-control news-form-control-mce" id="description" name="description" cols="40" rows="10"><?php echo $xml->listing[$id]->description;?></textarea>
 								<?php } ?>
 							</div>
 						</div>
